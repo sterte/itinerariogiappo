@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giappone 2026 — Planner completo</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f4f0;color:#1a1a18;padding:20px 16px}
+.wrap{max-width:740px;margin:0 auto}
+h1{font-size:22px;font-weight:500;margin-bottom:3px}
+.subtitle{font-size:14px;color:#6b6b66;margin-bottom:18px}
+.ab{border-radius:12px;padding:10px 14px;margin-bottom:10px;font-size:13px;line-height:1.5}
+.ab-warn{background:#faeeda;border:1px solid #f5c47a;color:#854f0b}
+.ab-info{background:#e6f1fb;border:1px solid #b5d4f4;color:#185fa5}
+.legend{display:flex;flex-wrap:wrap;gap:7px 13px;margin-bottom:14px;padding:9px 12px;background:#eeecea;border-radius:8px}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:#5f5e5a;white-space:nowrap}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.phase-tabs{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.phase-tab{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:0.5px solid #ccc;background:#eeecea;color:#6b6b66;transition:all .15s;white-space:nowrap;user-select:none}
+.phase-tab:hover{background:#fff;color:#1a1a18}
+.phase-tab.active{background:#1a1a18;color:#fff;border-color:#1a1a18}
+.day-tabs{display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap}
+.day-tab{padding:5px 10px;border-radius:16px;font-size:11px;font-weight:500;cursor:pointer;border:0.5px solid #ccc;background:#eeecea;color:#6b6b66;transition:all .15s;white-space:nowrap;user-select:none}
+.day-tab:hover{background:#fff;color:#1a1a18}
+.day-tab.active{background:#1a1a18;color:#fff;border-color:#1a1a18}
+.gw-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#E24B4A;margin-left:3px;vertical-align:middle}
+.phase{display:none}.phase.visible{display:block}
+.day-card{display:none}.day-card.visible{display:block}
+.day-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:8px;flex-wrap:wrap}
+.day-title{font-size:18px;font-weight:500}
+.day-sub{font-size:13px;color:#6b6b66;margin-top:2px}
+.pill{font-size:11px;font-weight:500;padding:2px 8px;border-radius:10px;white-space:nowrap;margin-top:4px}
+.pill-red{background:#fcebeb;color:#a32d2d}
+.pill-green{background:#eaf3de;color:#3b6d11}
+.pill-gray{background:#eeecea;color:#5f5e5a;border:0.5px solid #d3d1c7}
+.timeline{position:relative;padding-left:72px}
+.tl-item{position:relative;margin-bottom:4px}
+.tl-time{position:absolute;left:-72px;width:62px;text-align:right;font-size:11px;font-weight:500;color:#9c9a92;padding-top:11px;line-height:1.2;white-space:nowrap}
+.tl-line{position:absolute;left:-6px;top:0;bottom:0;width:1px;background:#d3d1c7}
+.tl-dot{position:absolute;left:-10px;top:13px;width:9px;height:9px;border-radius:50%;border:1.5px solid #f5f4f0}
+.d-log{background:#E24B4A}.d-cult{background:#378ADD}.d-art{background:#7F77DD}
+.d-food{background:#EF9F27}.d-nat{background:#639922}.d-exp{background:#D85A30}
+.d-rest{background:#888780}.d-vg{background:#1D9E75}
+.tl-block{background:#eeecea;border-radius:8px;padding:8px 12px;margin-bottom:6px}
+.tl-block.danger{background:#fcebeb;border:1px solid #f7c1c1}
+.tl-block.info{background:#e6f1fb;border:1px solid #b5d4f4}
+.tl-block.outlined{background:#fff;border:1px solid #d3d1c7}
+.tl-block.film{background:#fff;border:2px solid #7F77DD}
+.tl-block.vg{background:#fff;border:1px solid #1D9E75}
+.tl-label{font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:2px}
+.tl-label.danger{color:#a32d2d}
+.tl-label.info{color:#185fa5}
+.tl-label.art{color:#534AB7}
+.tl-label.vg{color:#0F6E56}
+.tl-desc{font-size:12px;color:#5f5e5a;line-height:1.45}
+.tl-desc em{color:#9c9a92;font-style:italic}
+.vg-tip{border-left:2px solid #1D9E75;padding:4px 8px;margin-top:6px;font-size:11px;color:#5f5e5a;background:#eeecea;border-radius:0 4px 4px 0;line-height:1.5}
+.vg-tip strong{color:#0F6E56;font-weight:500}
+.food-rec{margin-top:6px;display:flex;flex-direction:column;gap:4px}
+.food-opt{background:#eeecea;border-radius:6px;padding:5px 8px}
+.food-name{font-size:12px;font-weight:500;color:#1a1a18}
+.food-desc{font-size:11px;color:#5f5e5a;margin-top:1px;line-height:1.4}
+.tag{display:inline-block;font-size:10px;font-weight:500;padding:1px 5px;border-radius:4px;margin-right:3px;margin-top:2px}
+.tag-p{background:#fcebeb;color:#a32d2d}
+.tag-np{background:#e6f1fb;color:#185fa5}
+.tag-e{background:#eaf3de;color:#3b6d11}
+.toilet-item{background:#eeecea;border-radius:6px;padding:5px 8px;margin-bottom:4px}
+.toilet-arch{font-size:11px;color:#7F77DD;font-weight:500}
+.toilet-desc{font-size:11px;color:#5f5e5a;margin-top:1px;line-height:1.4}
+.dummy-card{background:#eeecea;border:1px dashed #b4b2a9;border-radius:12px;padding:20px;text-align:center;margin-bottom:8px}
+.dummy-title{font-size:16px;font-weight:500;color:#5f5e5a;margin-bottom:4px}
+.dummy-sub{font-size:13px;color:#9c9a92}
+.section-h{font-size:12px;font-weight:500;color:#6b6b66;text-transform:uppercase;letter-spacing:.04em;margin:0 0 8px}
+.checklist{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+.check-item{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:#eeecea;border-radius:8px;cursor:pointer;transition:all .15s}
+.check-item:hover{background:#fff}
+.check-item.done .check-label{text-decoration:line-through;opacity:.5}
+.check-box{width:16px;height:16px;border-radius:4px;border:1.5px solid #b4b2a9;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center}
+.check-item.done .check-box{background:#eaf3de;border-color:#97c459}
+.check-tick{font-size:10px;display:none;color:#3b6d11}
+.check-item.done .check-tick{display:block}
+.check-label{font-size:13px;color:#1a1a18;line-height:1.4;flex:1}
+.check-sub{font-size:11px;color:#9c9a92;margin-top:1px}
+.check-urg{font-size:10px;font-weight:500;padding:1px 6px;border-radius:4px;white-space:nowrap;flex-shrink:0}
+.urg-hot{background:#fcebeb;color:#a32d2d}
+.urg-warm{background:#faeeda;color:#854f0b}
+.urg-ok{background:#eaf3de;color:#3b6d11}
+.wish-group{margin-bottom:10px}
+.wish-glabel{font-size:11px;font-weight:500;color:#9c9a92;margin-bottom:4px;padding-left:2px}
+.wish-row{display:flex;flex-wrap:wrap;gap:5px}
+.wish-item{background:#eeecea;border:0.5px solid #d3d1c7;border-radius:8px;padding:5px 9px;font-size:12px;color:#5f5e5a;cursor:pointer;transition:all .15s;line-height:1.4;white-space:nowrap;user-select:none}
+.wish-item:hover{background:#fff;color:#1a1a18}
+.wish-item.done{opacity:.4;text-decoration:line-through}
+.wish-cat{font-size:10px;color:#9c9a92;margin-top:1px}
+.sarebbe-grid{display:flex;flex-direction:column;gap:4px}
+.sarebbe-item{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:#eeecea;border-radius:8px}
+.sarebbe-name{font-size:12px;font-weight:500;color:#1a1a18}
+.sarebbe-when{font-size:11px;color:#5f5e5a;margin-top:2px;line-height:1.4}
+.s-dot{width:7px;height:7px;border-radius:50%;background:#b4b2a9;flex-shrink:0;margin-top:4px}
+.note{font-size:12px;color:#9c9a92;margin-top:12px;font-style:italic}
+@media(prefers-color-scheme:dark){
+body{background:#1c1c1a;color:#c2c0b6}
+.ab-warn{background:#412402;border-color:#633806;color:#fac775}
+.ab-info{background:#042c53;border-color:#0c447c;color:#85b7eb}
+.legend,.day-tab,.phase-tab,.tl-block,.food-opt,.toilet-item,.check-item,.wish-item,.sarebbe-item,.dummy-card{background:#2c2c2a}
+.phase-tab:hover,.day-tab:hover,.check-item:hover,.wish-item:hover{background:#3d3d3a;color:#c2c0b6}
+.phase-tab.active,.day-tab.active{background:#c2c0b6;color:#1c1c1a;border-color:#c2c0b6}
+.tl-dot{border-color:#1c1c1a}
+.tl-line{background:#444441}
+.tl-block.danger{background:#501313;border-color:#791f1f}
+.tl-block.info{background:#042c53;border-color:#0c447c}
+.tl-block.outlined,.tl-block.film,.tl-block.vg{background:#1c1c1a;border-color:#444441}
+.tl-block.film{border-color:#7F77DD}
+.tl-block.vg{border-color:#1D9E75}
+.tl-label{color:#c2c0b6}
+.tl-label.danger{color:#f09595}
+.tl-label.info{color:#85b7eb}
+.tl-desc{color:#888780}
+.tl-desc em{color:#5f5e5a}
+.food-name,.check-label,.sarebbe-name{color:#c2c0b6}
+.food-desc,.toilet-desc,.vg-tip,.sarebbe-when{color:#888780}
+.vg-tip{background:#2c2c2a}
+.tag-p{background:#501313;color:#f09595}
+.tag-np{background:#042c53;color:#85b7eb}
+.tag-e{background:#173404;color:#c0dd97}
+.pill-red{background:#501313;color:#f09595}
+.pill-green{background:#173404;color:#c0dd97}
+.pill-gray{background:#2c2c2a;color:#888780;border-color:#444441}
+.wish-item{border-color:#444441;color:#888780}
+.check-box{border-color:#444441}
+.check-item.done .check-box{background:#173404;border-color:#3b6d11}
+.check-tick{color:#c0dd97}
+.leg-item{color:#888780}
+.day-sub,.subtitle{color:#888780}
+.wish-glabel,.wish-cat,.check-sub,.s-dot,.note,.section-h{color:#5f5e5a}
+.dummy-title{color:#888780}
+.dummy-sub{color:#5f5e5a}
+.dummy-card{border-color:#444441}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Giappone 2026</h1>
+<p class="subtitle">Piano completo · 4 maggio – 25 maggio</p>
+
+<div class="ab ab-warn">⚑ <strong>Urgente:</strong> biglietti Ghibli Museum per maggio → <strong>10 aprile ore 03:00 italiane</strong> su l-tike.com (o Klook/Viator). Esaurimento in meno di 30 min.</div>
+<div class="ab ab-info">ℹ Volo di ritorno: <strong>25 maggio ore 22:45</strong>. Ultima notte Tokyo 24–25 maggio.</div>
+
+<div class="legend">
+  <div class="leg-item"><div class="leg-dot" style="background:#E24B4A"></div>Logistica</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#378ADD"></div>Cultura</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#7F77DD"></div>Cinema / arte</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#EF9F27"></div>Cibo</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#639922"></div>Natura</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#D85A30"></div>Esperienze uniche</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#888780"></div>Riposo</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#1D9E75"></div>Vita giapponese</div>
+</div>
+
+<div class="phase-tabs">
+  <div class="phase-tab active" onclick="showPhase('t1')">Tokyo 4–9 mag</div>
+  <div class="phase-tab" onclick="showPhase('kam')">Kamakura 9–10 mag</div>
+  <div class="phase-tab" onclick="showPhase('via')">In viaggio 10–23 mag</div>
+  <div class="phase-tab" onclick="showPhase('t2')">Tokyo 24–25 mag</div>
+  <div class="phase-tab" onclick="showPhase('pre')">Prima di partire</div>
+</div>
+
+<!-- ===== TOKYO 1 ===== -->
+<div id="phase-t1" class="phase visible">
+<div class="day-tabs">
+  <div class="day-tab active" onclick="showDay('t1',0)">4 mag<span class="gw-dot"></span></div>
+  <div class="day-tab" onclick="showDay('t1',1)">5 mag<span class="gw-dot"></span></div>
+  <div class="day-tab" onclick="showDay('t1',2)">6 mag</div>
+  <div class="day-tab" onclick="showDay('t1',3)">7 mag</div>
+  <div class="day-tab" onclick="showDay('t1',4)">8 mag</div>
+</div>
+
+<!-- 4 maggio -->
+<div id="t1-0" class="day-card visible">
+  <div class="day-header"><div><div class="day-title">Domenica 4 maggio</div><div class="day-sub">Arrivo · Check-in Bali an Resort Shinjuku</div></div><div class="pill pill-red">Golden Week</div></div>
+  <div class="timeline"><div class="tl-line"></div>
+    <div class="tl-item"><div class="tl-time">mattina</div><div class="tl-dot d-log"></div><div class="tl-block"><div class="tl-label danger">Arrivo e transfer</div><div class="tl-desc">Da Narita: Narita Express ~80 min. Da Haneda: Keikyu Line ~35 min. Check-in hotel.</div></div></div>
+    <div class="tl-item"><div class="tl-time">13:00–15:00</div><div class="tl-dot d-rest"></div><div class="tl-block"><div class="tl-label">Pausa jet lag</div><div class="tl-desc">Doccia, pasto leggero, tieniti sveglio.</div><div class="vg-tip"><strong>Vita giapponese:</strong> kombini sotto l'hotel — onigiri, caffè caldo dalla macchinetta. Osserva il cambio resto nel vassoietto e il silenzio educato.</div></div></div>
+    <div class="tl-item"><div class="tl-time">15:00–18:30</div><div class="tl-dot d-cult"></div><div class="tl-block"><div class="tl-label">Esplora Shinjuku a piedi</div><div class="tl-desc">Kabukicho, Golden Gai (da fuori stasera), Takashimaya Times Square.</div><div class="vg-tip"><strong>Vita giapponese:</strong> distributori automatici ovunque — Suntory Boss caldo o Oi Ocha freddo. Mai bere camminando dentro i negozi.</div></div></div>
+    <div class="tl-item"><div class="tl-time">18:30–20:00</div><div class="tl-dot d-food"></div><div class="tl-block outlined"><div class="tl-label">Cena — Omoide Yokocho</div><div class="tl-desc">Vicoli fumosi, yakitori su carbone. Ordina tori kawa, negima, tsukune. Cash only.</div><div class="food-rec"><div class="food-opt"><div class="food-name">Qualsiasi banco su Omoide Yokocho</div><div class="food-desc">Siediti dove c'è posto. Alt: Ichiran Ramen per qualcosa di rapido e solitario. ~¥1–3k.</div><div><span class="tag tag-np">no prenotazione</span><span class="tag tag-e">¥1–3k</span></div></div></div></div></div>
+    <div class="tl-item"><div class="tl-time">20:30–21:00</div><div class="tl-dot d-vg"></div><div class="tl-block vg"><div class="tl-label vg">Pachinko — opzionale se reggi</div><div class="tl-desc">Sale enormi su Yasukuni-dori, 5 min a piedi. 20–30 min bastano. Rumoroso, fumoso, caotico. Compra ¥1.000 di palline e lasciati travolgere.</div></div></div>
+    <div class="tl-item"><div class="tl-time">21:30</div><div class="tl-dot d-rest"></div><div class="tl-block"><div class="tl-label">A letto</div><div class="tl-desc">Tieni duro fino alle 21–22 locali. Golden Gai aspetta domani.</div></div></div>
+  </div>
+</div>
+
+<!-- 5 maggio -->
+<div id="t1-1" class="day-card">
+  <div class="day-header"><div><div class="day-title">Lunedì 5 maggio</div><div class="day-sub">Children's Day · Koinobori ovunque</div></div><div class="pill pill-red">Golden Week</div></div>
+  <div class="timeline"><div class="tl-line"></div>
+    <div class="tl-item"><div class="tl-time">09:00–10:30</div><div class="tl-dot d-exp"></div><div class="tl-block"><div class="tl-label">Capybara cafe — Cappiness Shinjuku</div><div class="tl-desc">10 min a piedi dall'hotel. Prenota online in anticipo. Posti limitati per slot.</div></div></div>
+    <div class="tl-item"><div class="tl-time">10:30–12:00</div><div class="tl-dot d-nat"></div><div class="tl-block"><div class="tl-label">Shinjuku Gyoen</div><div class="tl-desc">Verde di maggio, koinobori, famiglie in festa per Children's Day.</div><div class="vg-tip"><strong>Vita giapponese:</strong> nei parchi nessuno mangia camminando. Siediti con lo snack del kombini e osserva i picnic familiari ordinatissimi.</div></div></div>
+    <div class="tl-item"><div class="tl-time">12:30–14:00</div><div class="tl-dot d-food"></div><div class="tl-block outlined"><div class="tl-label">Pranzo — Craft Gyoza Fes · Komazawa</div><div class="food-rec"><div class="food-opt"><div class="food-name">Craft Gyoza Fes 2026</div><div class="food-desc">Metro Komazawa-daigaku, ~15 min. Ultimo giorno utile. Gyoza artigianali regionali + birre locali. ~¥1.5–2.5k.</div><div><span class="tag tag-np">ingresso libero</span><span class="tag tag-e">¥1.5–2.5k</span></div></div></div></div></div>
+    <div class="tl-item"><div class="tl-time">14:30–17:30</div><div class="tl-dot d-cult"></div><div class="tl-block"><div class="tl-label">Shimokitazawa</div><div class="tl-desc">Vinyl shop, cafe indie, mercatini vintage.</div><div class="vg-tip"><strong>Vita giapponese:</strong> Book Off locale — vinili e manga usati a prezzi ridicoli. Quartiere dei giovani alternativi tokyoiti, niente turisti.</div></div></div>
+    <div class="tl-item"><div class="tl-time">18:30–20:30</div><div class="tl-dot d-exp"></div><div class="tl-block"><div class="tl-label">New York Bar — Park Hyatt Shinjuku</div><div class="tl-desc">52° piano, jazz live, vista su Tokyo. Consumazione minima ~¥3.000. Smart casual. Nessuna prenotazione necessaria.</div></div></div>
+    <div class="tl-item"><div class="tl-time">21:00–23:00</div><div class="tl-dot d-vg"></div><div class="tl-block vg"><div class="tl-label vg">Golden Gai — izakaya backstreet</div><div class="tl-desc">~200 localini da 6–8 posti, ognuno con identità precisa: jazz, horror, manga, cinema. Sake caldo o highball al bancone. Niente menu in inglese, niente turisti (quasi).</div><div class="vg-tip"><strong>Consiglio:</strong> evita i bar con "foreigners welcome" in grande. Cerca quelli con solo una tenda noren senza insegna visibile.</div></div></div>
+  </div>
+</div>
+
+<!-- 6 maggio -->
+<div id="t1-2" class="day-card">
+  <div class="day-header"><div><div class="day-title">Martedì 6 maggio</div><div class="day-sub">Fine Golden Week · Festività sostitutiva</div></div><div class="pill pill-green">Festivo — musei aperti</div></div>
+  <div class="timeline"><div class="tl-line"></div>
+    <div class="tl-item"><div class="tl-time">11:00–12:30</div><div class="tl-dot d-art"></div><div class="tl-block"><div class="tl-label">Yayoi Kusama Museum</div><div class="tl-desc">Aperto oggi come festività sostitutiva (Constitution Day, 3 maggio caduto di domenica → sostitutivo il 6). Primo slot ore 11:00. Prenotazione anticipata obbligatoria su yayoikusamamuseum.jp. Slot da 90 min, ¥1.100.</div></div></div>
+    <div class="tl-item"><div class="tl-time">12:30–13:30</div><div class="tl-dot d-food"></div><div class="tl-block outlined"><div class="tl-label">Pranzo — Harajuku</div><div class="food-rec"><div class="food-opt"><div class="food-name">Harajuku Gyoza Lou</div><div class="food-desc">Istituzione locale da 20 anni. Solo gyoza fritti o al vapore, ¥340 per 6. Cash only, niente fronzoli.</div><div><span class="tag tag-np">no prenotazione</span><span class="tag tag-e">¥600–1k</span></div></div><div class="food-opt"><div class="food-name">Sakuratei</div><div class="food-desc">Okonomiyaki che cuoci tu al tavolo. Prenota online.</div><div><span class="tag tag-p">prenota consigliato</span><span class="tag tag-e">¥2k</span></div></div></div></div></div>
+    <div class="tl-item"><div class="tl-time">13:30–15:30</div><div class="tl-dot d-cult"></div><div class="tl-block"><div class="tl-label">Meiji Jingu → Takeshita St → Cat Street → Tokyu Plaza Omotesando → Omotesando</div><div class="tl-desc">Percorso a piedi verso sud, tutto lineare. <strong>Meiji Jingu:</strong> bosco urbano, gratis, aperto 5:00–18:10. Giardino iris in fioritura. <strong>Takeshita St:</strong> cosplay e pop culture. <strong>Cat Street (Ura-Harajuku):</strong> vintage indie locale, designer giapponesi, niente turisti — molto diversa da Takeshita. <strong>Tokyu Plaza Omotesando:</strong> rooftop garden gratuito all'angolo con Omotesando, uno dei più fotografati di Tokyo. <strong>Omotesando:</strong> architettura di qualità e shopping di livello.</div></div></div>
+    <div class="tl-item"><div class="tl-time">15:30–16:30</div><div class="tl-dot d-art"></div><div class="tl-block film"><div class="tl-label art">The Tokyo Toilet — bagni di Perfect Days</div><div class="tl-desc">Mini-percorso a piedi verso Shibuya. Tutti nel quartiere Shibuya. Gratis, sempre aperti. Cerca "Tokyo Toilet Map" su Google Maps per tutti e 17.</div><div style="margin-top:6px;display:flex;flex-direction:column;gap:4px">
+      <div class="toilet-item"><div class="food-name">Yoyogi Fukamachi Mini Park</div><div class="toilet-arch">Shigeru Ban</div><div class="toilet-desc">Pareti trasparenti → opache quando chiudi. "How the hell does this work?"</div></div>
+      <div class="toilet-item"><div class="food-name">Nabeshima Shoto Park</div><div class="toilet-arch">Kengo Kuma</div><div class="toilet-desc">Cinque capanne in legno cedro nel verde. Il bambino perduto del film.</div></div>
+      <div class="toilet-item"><div class="food-name">Jingu-Dori Park</div><div class="toilet-arch">Tadao Ando</div><div class="toilet-desc">Cilindro in cemento grezzo con ampie tettoie engawa.</div></div>
+    </div></div></div>
+    <div class="tl-item"><div class="tl-time">16:30–20:00</div><div class="tl-dot d-exp"></div><div class="tl-block"><div class="tl-label">Shibuya — Scramble crossing + Shibuya Sky + SHARE LOUNGE</div><div class="tl-desc">Tutto nello stesso edificio (Shibuya Scramble Square), in sequenza dall'alto verso il basso.</div><div class="food-rec">
+      <div class="food-opt"><div class="food-name">Shibuya Sky — 47° piano</div><div class="food-desc">Terrazza open-air 360°. Tramonto a maggio ~18:30. Prenota online su shibuyasky.jp — i slot del tramonto si esauriscono. ¥2.200 online.</div><div><span class="tag tag-p">prenota online</span><span class="tag tag-e">¥2.200</span></div></div>
+      <div class="food-opt"><div class="food-name">SHARE LOUNGE Tsutaya — 11° piano</div><div class="food-desc">Vista diretta sullo Scramble Crossing. All-you-can-drink (analcolico ¥1.650/h, con alcol ~¥2.200–2.500/h) + snack illimitati: dolci, patatine, soft serve, instant noodles, Starbucks caffè. Staff parla inglese. Ottimo per guardare lo scramble di notte.</div><div><span class="tag tag-np">no prenotazione</span><span class="tag tag-e">¥1.650–2.500/h</span></div></div>
+    </div></div></div>
+    <div class="tl-item"><div class="tl-time">20:30–22:00</div><div class="tl-dot d-food"></div><div class="tl-block outlined"><div class="tl-label">Cena — Wagyu serio</div><div class="food-rec"><div class="food-opt"><div class="food-name">Yoroniku — Ebisu</div><div class="food-desc">Top yakiniku omakase Tokyo. 18 portate wagyu A5. Prenota su TableCheck o Omakase.</div><div><span class="tag tag-p">prenota mesi prima</span><span class="tag tag-e">¥20k+</span></div></div><div class="food-opt"><div class="food-name">Sumibi Yakiniku Nakahara — Ebisu</div><div class="food-desc">8 portate beef-focused. Wagyu katsu sando imperdibile.</div><div><span class="tag tag-p">prenota in anticipo</span><span class="tag tag-e">¥15–20k</span></div></div><div class="food-opt"><div class="food-name">Yakiniku Keyaki Jimbocho</div><div class="food-desc">Più accessibile. Ottimo carbone, all-you-can-drink.</div><div><span class="tag tag-np">più flessibile</span><span class="tag tag-e">¥5.5k</span></div></div></div></div></div>
+  </div>
+</div>
+
+<!-- 7 maggio -->
+<div id="t1-3" class="day-card">
+  <div class="day-header"><div><div class="day-title">Mercoledì 7 maggio</div><div class="day-sub">Ghibli · Palazzo Imperiale · Ginza · Akihabara</div></div><div class="pill pill-green">Feriale</div></div>
+  <div class="timeline"><div class="tl-line"></div>
+    <div class="tl-item"><div class="tl-time">09:30–12:30</div><div class="tl-dot d-art"></div><div class="tl-block"><div class="tl-label">Ghibli Museum — Mitaka</div><div class="tl-desc">Punto fisso. Slot 10:00 (aperto mercoledì ✓). Bus navetta da Mitaka station. Solo con biglietti acquistati il 10 aprile su l-tike.com.</div></div></div>
+    <div class="tl-item"><div class="tl-time">13:00–14:00</div><div class="tl-dot d-food"></div><div class="tl-block outlined"><div class="tl-label">Pranzo — Yurakucho Yakitori Alley</div><div class="food-rec"><div class="food-opt"><div class="food-name">Izakaya sotto i binari ferroviari</div><div class="food-desc">Tra Ginza e Yurakucho — izakaya storiche anni '50, yakitori fumoso. Contrasto totale con il lusso di Ginza a 2 minuti. Cash only. ~¥1.5–2k.</div><div><span class="tag tag-np">no prenotazione</span><span class="tag tag-e">¥1.5–2k</span></div></div></div></div></div>
+    <div class="tl-item"><div class="tl-time">14:00–16:00</div><div class="tl-dot d-nat"></div><div class="tl-block"><div class="tl-label">Palazzo Imperiale — Higashi Gyoen</div><div class="tl-desc">Giardini est aperti al pubblico, gratis, nessuna prenotazione. Aperto giovedì e mercoledì ✓ (chiuso lunedì e venerdì), orario 9:00–18:00. Mura storiche, fossati, prato del castello. Vista sul ponte Nijubashi.</div></div></div>
+    <div class="tl-item"><div class="tl-time">16:00–17:30</div><div class="tl-dot d-cult"></div><div class="tl-block"><div class="tl-label">Ginza</div><div class="tl-desc">Wako Building, Itoya (cartoleria storica su 12 piani), Kabuki-za dall'esterno. Architettura e negozi di qualità.</div></div></div>
+    <div class="tl-item"><div class="tl-time">17:30–...</div><div class="tl-dot d-cult"></div><div class="tl-block"><div class="tl-label">Akihabara</div><div class="tl-desc">Elettronica, anime, retrogaming. Yodobashi Camera, Mandarake per manga/anime usati, Super Potato per retrogaming. La giornata finisce quando vuoi.</div><div class="vg-tip"><strong>Vita giapponese:</strong> piani interi di componenti e gadget che non esisteranno mai in Europa. Anche solo guardare è un'esperienza.</div></div></div>
+  </div>
+</div>
+
+<!-- 8 maggio -->
+<div id="t1-4" class="day-card">
+  <div class="day-header"><div><div class="day-title">Giovedì 8 maggio</div><div class="day-sub">Ryogoku · Asakusa · Jimbocho · Spedizione bagagli</div></div><div class="pill pill-green">Feriale</div></div>
+  <div class="timeline"><div class="tl-line"></div>
+    <div class="tl-item"><div class="tl-time">08:00–09:00</div><div class="tl-dot d-log"></div><div class="tl-block danger"><div class="tl-label danger">Spedisci i bagagli a Kyoto — entro le 12</div><div class="tl-desc">Yamato Transport in hotel. ~¥1.500–2.500 per valigia. Porta indirizzo hotel Kyoto in giapponese. I bagagli arrivano domani sera a Kyoto.</div></div></div>
+    <div class="tl-item"><div class="tl-time">09:30–10:00</div><div class="tl-dot d-cult"></div><div class="tl-block"><div class="tl-label">Edo-Tokyo Museum — vista esterna · Ryogoku</div><div class="tl-desc">Riaperto il 31 marzo 2026 dopo 4 anni. L'edificio è imponente — alto quanto il vecchio castello di Edo, struttura a palafitte su piloni. Vale una sosta e una foto sulla strada per il Hokusai Museum, a 5 minuti a piedi. La visita alla collezione è un "sarebbe carino" — vedi sezione dedicata.</div></div></div>
+    <div class="tl-item"><div class="tl-time">10:00–11:30</div><div class="tl-dot d-art"></div><div class="tl-block"><div class="tl-label">Sumida Hokusai Museum — Ryogoku</div><div class="tl-desc">5 min a piedi dall'Edo-Tokyo Museum. Architettura di Kazuyo Sejima (edificio a specchi). Repliche ad alta risoluzione de La Grande Onda e Trentasei Vedute del Fuji. Aperto giovedì ✓. ¥400.</div></div></div>
+    <div class="tl-item"><div class="tl-time">12:00–13:00</div><div class="tl-dot d-food"></div><div class="tl-block outlined"><div class="tl-label">Pranzo — Asakusa</div><div class="food-rec"><div class="food-opt"><div class="food-name">Hoppy Street</div><div class="food-desc">Via locale parallela a Nakamise. Motsu-ni, yakitori, Hoppy drink. Autentico shitamachi. ~¥1.5k.</div><div><span class="tag tag-np">no prenotazione</span><span class="tag tag-e">¥1.5k</span></div></div><div class="food-opt"><div class="food-name">Tokyo Yakiniku Heijoen Asakusa</div><div class="food-desc">Fondato 1970, A5 wagyu yakiniku. 3 min da Asakusa station.</div><div><span class="tag tag-p">prenota consigliato</span><span class="tag tag-e">¥2–7k</span></div></div></div></div></div>
+    <div class="tl-item"><div class="tl-time">13:00–16:30</div><div class="tl-dot d-cult"></div><div class="tl-block"><div class="tl-label">Asakusa</div><div class="tl-desc">Senso-ji, Kaminarimon, Nakamise-dori, Kappabashi. Vista Skytree dal ponte Azumabashi.</div><div class="vg-tip"><strong>Vita giapponese:</strong> il mercato Kappabashi vende utensili veri da ristorante — coltelli, ciotole, modelli di cibo in plastica. Souvenir autentici a prezzi normali.</div></div></div>
+    <div class="tl-item"><div class="tl-time">17:00–19:30</div><div class="tl-dot d-art"></div><div class="tl-block"><div class="tl-label">Jimbocho — librerie e cinema</div><div class="tl-desc">Waseda Shochiku: classici e film d'autore. Controlla programma su wasedashochiku.co.jp.</div><div class="vg-tip"><strong>Vita giapponese:</strong> librerie antiquarie di Jimbocho — manga vecchi, libri di architettura, cinema. Sfoglia senza comprare, nessuno si offende.</div></div></div>
+    <div class="tl-item"><div class="tl-time">20:00–22:00</div><div class="tl-dot d-food"></div><div class="tl-block outlined"><div class="tl-label">Cena — Wagyu all-you-can-eat</div><div class="tl-desc">Ultima serata a Tokyo prima di Kamakura. Prenota in anticipo.</div><div class="food-rec"><div class="food-opt"><div class="food-name">Vedi link Blake in Tokyo</div><div class="food-desc">Shabu shabu AYCE wagyu + Kobe + Omi beef, 2h, stanza privata horigotatsu. ~¥8.500.</div><div><span class="tag tag-p">prenota in anticipo</span><span class="tag tag-e">¥8.5k</span></div></div><div class="food-opt"><div class="food-name">Alt: Yakiniku Keyaki Jimbocho</div><div class="food-desc">Già in zona dopo il cinema. All-you-can-drink disponibile. ~¥5.500.</div><div><span class="tag tag-np">più flessibile</span><span class="tag tag-e">¥5.5k</span></div></div></div></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ===== KAMAKURA ===== -->
+<div id="phase-kam" class="phase">
+<div class="day-tabs">
+  <div class="day-tab active" onclick="showDay('kam',0)">9 mag — arrivo</div>
+  <div class="day-tab" onclick="showDay('kam',1)">10 mag — partenza</div>
+</div>
+<div id="kam-0" class="day-card visible">
+  <div class="day-header"><div><div class="day-title">Venerdì 9 maggio</div><div class="day-sub">Tokyo → Kita-Kamakura → Kamakura · Pernottamento</div></div><div class="pill pill-green">Feriale</div></div>
+  <div class="timeline"><div class="tl-line"></div>
+    <div class="tl-item"><div class="tl-time">08:30</div><div class="tl-dot d-log"></div><div class="tl-block danger"><div class="tl-label danger">Partenza leggera da Shinjuku</div><div class="tl-desc">Shonan-Shinjuku Line → scendi a Kita-Kamakura, ~50 min. JR Pass valido. I bagagli grandi sono già a Kyoto dall'8 mattina.</div><div class="vg-tip"><strong>Vita giapponese:</strong> kombini in stazione — onigiri + tè caldo = colazione del pendolare. Sul treno: silenzio assoluto, telefono in silenzioso.</div></div></div>
+    <div class="tl-item"><div class="tl-time">09:30–10:30</div><div class="tl-dot d-art"></div><div class="tl-block outlined"><div class="tl-label art">Tomba di Yasujiro Ozu — Engaku-ji</div><div class="tl-desc">2 min dalla stazione di Kita-Kamakura. Cimitero Zen. Sulla lapide solo <em>無</em> (mu). Silenzio totale.</div></div></div>
+    <div class="tl-item"><div class="tl-time">10:30–10:45</div><div class="tl-dot d-log"></div><div class="tl-block"><div class="tl-label danger">Kita-Kamakura → Kamakura</div><div class="tl-desc">Treno JR (3 min) o a piedi 25 min tra i templi.</div></div></div>
+    <div class="tl-item"><div class="tl-time">11:00–12:30</div><div class="tl-dot d-cult"></div><div class="tl-block"><div class="tl-label">Tsurugaoka Hachimangu + Komachi-dori</div><div class="tl-desc">Grande santuario shintoista e via artigianale principale.</div></div></div>
+    <div class="tl-item"><div class="tl-time">12:30–13:30</div><div class="tl-dot d-food"></div><div class="tl-block outlined"><div class="tl-label">Pranzo — Shirasu-don</div><div class="tl-desc">Maggio è stagione primaverile del shirasu. Raw shirasu: sapore di mare pulito, consistenza setosa.</div><div class="food-rec"><div class="food-opt"><div class="food-name">Shirasuya Honten — porto Koshigoe</div><div class="food-desc">Shirasu pescato la mattina stessa. Set completo ~¥2.100. Cash only.</div><div><span class="tag tag-np">no prenotazione</span><span class="tag tag-e">¥2k</span></div></div><div class="food-opt"><div class="food-name">Wasai Yakura — Komachi-dori</div><div class="food-desc">Shirasu don + sashimi stagionale + verdure di Kamakura. Ambiente rilassato in legno.</div><div><span class="tag tag-np">no prenotazione</span><span class="tag tag-e">¥1.5–2k</span></div></div></div></div></div>
+    <div class="tl-item"><div class="tl-time">13:30–15:30</div><div class="tl-dot d-nat"></div><div class="tl-block"><div class="tl-label">Daibutsu + Hase-dera</div><div class="tl-desc">Grande Buddha (13m) e tempio con giardini a picco sul mare.</div></div></div>
+    <div class="tl-item"><div class="tl-time">15:30–17:00</div><div class="tl-dot d-log"></div><div class="tl-block danger"><div class="tl-label danger">Check-in hotel Kamakura / Enoshima</div><div class="tl-desc">Lascia il bagaglio, prendi fiato.</div></div></div>
+    <div class="tl-item"><div class="tl-time">17:00–19:30</div><div class="tl-dot d-nat"></div><div class="tl-block"><div class="tl-label">Enoshima — tramonto</div><div class="tl-desc">Enoden da Kamakura ~15 min (~¥310). Santuario Benzaiten, grotte Iwaya. Tramonto sulla baia a maggio ~18:30–19:00.</div></div></div>
+    <div class="tl-item"><div class="tl-time">19:30–21:00</div><div class="tl-dot d-food"></div><div class="tl-block outlined"><div class="tl-label">Cena — Enoshima o Kamakura</div><div class="food-rec"><div class="food-opt"><div class="food-name">Pesce fresco a Enoshima</div><div class="food-desc">Ristoranti di seafood sull'isola con vista sulla baia. Aragosta, ika, shirasu. ~¥2–4k.</div><div><span class="tag tag-np">no prenotazione</span><span class="tag tag-e">¥2–4k</span></div></div><div class="food-opt"><div class="food-name">Hase Shokudo — Kamakura</div><div class="food-desc">Shirasu + Kamakura Beer (World Beer Awards 2019). Terrazza esterna.</div><div><span class="tag tag-np">no prenotazione</span><span class="tag tag-e">¥1.5k</span></div></div></div></div></div>
+  </div>
+</div>
+<div id="kam-1" class="day-card">
+  <div class="day-header"><div><div class="day-title">Sabato 10 maggio</div><div class="day-sub">Kamakura mattina · Partenza per Kyoto</div></div><div class="pill pill-green">Sabato</div></div>
+  <div class="timeline"><div class="tl-line"></div>
+    <div class="tl-item"><div class="tl-time">08:00–10:00</div><div class="tl-dot d-nat"></div><div class="tl-block"><div class="tl-label">Mattina libera a Kamakura</div><div class="tl-desc">Sentieri Zen tra i templi, Engaku-ji di nuovo con più calma, o passeggiata nel centro storico. Kamakura di mattina è deserta.</div></div></div>
+    <div class="tl-item"><div class="tl-time">10:00–11:00</div><div class="tl-dot d-log"></div><div class="tl-block danger"><div class="tl-label danger">Check-out → Odawara</div><div class="tl-desc">Da Kamakura a Odawara ~50 min (JR Tokaido Line). Punto shinkansen più comodo verso Kyoto.</div></div></div>
+    <div class="tl-item"><div class="tl-time">11:30–12:00</div><div class="tl-dot d-food"></div><div class="tl-block outlined"><div class="tl-label">Ekiben — Odawara station</div><div class="food-rec"><div class="food-opt"><div class="food-name">Ekiben a Odawara station</div><div class="food-desc">Odawara è famosa per i kamaboko (polpette di pesce). Mangialo sullo shinkansen — da Odawara il Fuji è vicinissimo. ~¥1k.</div><div><span class="tag tag-np">no prenotazione</span><span class="tag tag-e">¥1k</span></div></div></div></div></div>
+    <div class="tl-item"><div class="tl-time">12:00 circa</div><div class="tl-dot d-log"></div><div class="tl-block info"><div class="tl-label info">Shinkansen Odawara → Kyoto</div><div class="tl-desc">Hikari o Kodama (~1h30). JR Pass valido. Siediti lato D — da Odawara il Fuji è spettacolare.</div></div></div>
+    <div class="tl-item"><div class="tl-time">13:30 circa</div><div class="tl-dot d-rest"></div><div class="tl-block"><div class="tl-label">Arrivo a Kyoto</div><div class="tl-desc">Bagagli spediti dall'8 maggio già in hotel. Il viaggio continua.</div></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ===== IN VIAGGIO ===== -->
+<div id="phase-via" class="phase">
+  <div class="dummy-card"><div class="dummy-title">11–23 maggio — Kyoto · Osaka · Kobe</div><div class="dummy-sub">Da pianificare in una sessione dedicata</div></div>
+  <div class="dummy-card"><div class="dummy-title">Struttura prevista</div><div class="dummy-sub">Kyoto (qualche notte) → Osaka → Kobe → rientro a Tokyo il 24 maggio</div></div>
+</div>
+
+<!-- ===== TOKYO 2 ===== -->
+<div id="phase-t2" class="phase">
+<div class="day-tabs">
+  <div class="day-tab active" onclick="showDay('t2',0)">24 mag — arrivo</div>
+  <div class="day-tab" onclick="showDay('t2',1)">25 mag — volo</div>
+</div>
+<div id="t2-0" class="day-card visible">
+  <div class="day-header"><div><div class="day-title">Domenica 24 maggio</div><div class="day-sub">Rientro a Tokyo da Kobe</div></div><div class="pill pill-gray">Flessibile</div></div>
+  <div class="timeline"><div class="tl-line"></div>
+    <div class="tl-item"><div class="tl-time">pomeriggio</div><div class="tl-dot d-log"></div><div class="tl-block danger"><div class="tl-label danger">Arrivo a Tokyo</div><div class="tl-desc">Orario da definire in base all'itinerario Kobe. Check-in hotel.</div></div></div>
+    <div class="tl-item"><div class="tl-time">da confermare</div><div class="tl-dot d-vg"></div><div class="tl-block vg"><div class="tl-label vg">Sumo — ultimo giorno del torneo</div><div class="tl-desc">Il torneo di maggio si chiude il 24 maggio al Ryogoku Kokugikan. Sessioni pomeridiane dalle 14:00, combattimenti principali dalle 16:00. Se arrivi in tempo è un finale perfetto per il viaggio. Biglietti su japan-sumo.jp o al botteghino il giorno stesso.</div></div></div>
+    <div class="tl-item"><div class="tl-time">sera</div><div class="tl-dot d-food"></div><div class="tl-block outlined"><div class="tl-label">Cena libera</div><div class="tl-desc">Ultima serata vera in Giappone. Un'izakaya locale, un ramen di qualità, o torna in un posto che ti è piaciuto.</div></div></div>
+  </div>
+</div>
+<div id="t2-1" class="day-card">
+  <div class="day-header"><div><div class="day-title">Lunedì 25 maggio</div><div class="day-sub">Mattina libera · Volo ore 22:45</div></div><div class="pill pill-gray">Volo 22:45</div></div>
+  <div class="timeline"><div class="tl-line"></div>
+    <div class="tl-item"><div class="tl-time">06:00–09:00</div><div class="tl-dot d-food"></div><div class="tl-block outlined"><div class="tl-label">Colazione — Tsukiji mercato esterno</div><div class="food-rec"><div class="food-opt"><div class="food-name">Tsukiji mercato esterno</div><div class="food-desc">Apre dalle 5–6. Tamagoyaki, ostriche, tuna sushi al banco, chirashi. Ultima colazione in Giappone — falla bene. ~¥1–2k.</div><div><span class="tag tag-np">no prenotazione</span><span class="tag tag-e">¥1–2k</span></div></div></div></div></div>
+    <div class="tl-item"><div class="tl-time">09:00–13:00</div><div class="tl-dot d-cult"></div><div class="tl-block"><div class="tl-label">Mattina libera</div><div class="tl-desc">Candidati: Odaiba + Gundam, Edo-Tokyo Museum (finalmente!), ultimo giro Shinjuku.</div><div class="vg-tip"><strong>Vita giapponese:</strong> ultimo giro kombini — Kit Kat matcha, pocky, dagashi, souvenir economici e autentici.</div></div></div>
+    <div class="tl-item"><div class="tl-time">13:00–15:00</div><div class="tl-dot d-rest"></div><div class="tl-block"><div class="tl-label">Rientro in hotel, bagagli, check-out</div><div class="tl-desc">Pranzo leggero, preparativi partenza.</div></div></div>
+    <div class="tl-item"><div class="tl-time">17:00–18:00</div><div class="tl-dot d-log"></div><div class="tl-block danger"><div class="tl-label danger">Transfer aeroporto</div><div class="tl-desc">Da Shinjuku a Narita: Narita Express ~90 min. Da Shinjuku a Haneda: Keikyu ~35 min. Parti con almeno 3h di anticipo per il volo delle 22:45.</div></div></div>
+    <div class="tl-item"><div class="tl-time">22:45</div><div class="tl-dot d-log"></div><div class="tl-block info"><div class="tl-label info">Volo di ritorno</div><div class="tl-desc">Sayonara.</div></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ===== PRIMA DI PARTIRE ===== -->
+<div id="phase-pre" class="phase">
+
+<div class="section-h">Prenotazioni con scadenza</div>
+<div class="checklist">
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">Ghibli Museum — biglietti maggio<div class="check-sub">10 aprile ore 03:00 italiane su l-tike.com — esaurimento in &lt;30 min. Alt: Klook/Viator.</div></div><div class="check-urg urg-hot">10 apr</div></div>
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">Yayoi Kusama Museum — slot 6 maggio ore 11:00<div class="check-sub">Su yayoikusamamuseum.jp. Slot mensili. ¥1.100. Aperto il 6 maggio come festività sostitutiva.</div></div><div class="check-urg urg-hot">ora</div></div>
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">Yoroniku o Nakahara — cena wagyu 6 maggio<div class="check-sub">TableCheck o Omakase. Yoroniku si prenota mesi prima — prova subito.</div></div><div class="check-urg urg-hot">ora</div></div>
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">Shibuya Sky — slot tramonto 6 maggio<div class="check-sub">Prenota online su shibuyasky.jp. I slot del tramonto si esauriscono rapidamente.</div></div><div class="check-urg urg-warm">presto</div></div>
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">Cappiness Shinjuku — capybara cafe 5 maggio<div class="check-sub">Prenota online — posti limitati per slot.</div></div><div class="check-urg urg-warm">presto</div></div>
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">Wagyu all-you-can-eat 8 maggio<div class="check-sub">Vedi link Blake in Tokyo. Shabu shabu AYCE, stanza privata horigotatsu. ~¥8.500.</div></div><div class="check-urg urg-warm">presto</div></div>
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">Posto riservato shinkansen con JR Pass<div class="check-sub">Qualche giorno prima: Odawara→Kyoto (10 mag). Lato D per il Fuji.</div></div><div class="check-urg urg-ok">in viaggio</div></div>
+</div>
+
+<div class="section-h">Logistica pre-partenza</div>
+<div class="checklist">
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">JR Pass — acquistalo in Italia<div class="check-sub">Molto più economico che in Giappone. Attivalo alla prima stazione all'arrivo.</div></div><div class="check-urg urg-warm">prima</div></div>
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">SIM o eSIM — prenota online<div class="check-sub">Attivazione in aeroporto appena atterri.</div></div><div class="check-urg urg-warm">prima</div></div>
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">Indirizzo hotel Kyoto in giapponese<div class="check-sub">Necessario per la spedizione Yamato Transport l'8 maggio. Stampalo o salvalo offline.</div></div><div class="check-urg urg-warm">prima</div></div>
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">Cash — portane abbastanza<div class="check-sub">Molti posti cash only: Omoide Yokocho, Shirasuya Honten, Gyoza Lou. ATM in ogni kombini 7-Eleven.</div></div><div class="check-urg urg-ok">prima</div></div>
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">App: Google Maps offline + Translate foto<div class="check-sub">Scarica la mappa di Tokyo offline. Google Translate modalità fotocamera per i menu giapponesi.</div></div><div class="check-urg urg-ok">prima</div></div>
+  <div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"><span class="check-tick">✓</span></div><div class="check-label">IC Card (Suica / Pasmo) — caricala in aeroporto<div class="check-sub">¥3.000–5.000. Copre metro, treni locali e pagamenti kombini.</div></div><div class="check-urg urg-ok">all'arrivo</div></div>
+</div>
+
+<div class="section-h" style="margin-top:6px">Wishlist — in ordine cronologico</div>
+<div class="wish-group"><div class="wish-glabel">4 maggio</div><div class="wish-row"><div class="wish-item" onclick="this.classList.toggle('done')">Pachinko<div class="wish-cat">sera · opzionale</div></div></div></div>
+<div class="wish-group"><div class="wish-glabel">5 maggio</div><div class="wish-row"><div class="wish-item" onclick="this.classList.toggle('done')">Capybara cafe<div class="wish-cat">mattina</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Craft Gyoza Fes<div class="wish-cat">pranzo · ultimo giorno</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Shimokitazawa<div class="wish-cat">pomeriggio</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Park Hyatt bar<div class="wish-cat">sera</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Golden Gai<div class="wish-cat">sera tardi</div></div></div></div>
+<div class="wish-group"><div class="wish-glabel">6 maggio</div><div class="wish-row"><div class="wish-item" onclick="this.classList.toggle('done')">Meiji Jingu<div class="wish-cat">pomeriggio</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Yayoi Kusama Museum<div class="wish-cat">11:00 · prenota ora</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Cat Street<div class="wish-cat">pomeriggio</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Tokyu Plaza rooftop<div class="wish-cat">pomeriggio · gratis</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Tokyo Toilet · Perfect Days<div class="wish-cat">pomeriggio</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Shibuya Sky<div class="wish-cat">tramonto · prenota online</div></div><div class="wish-item" onclick="this.classList.toggle('done')">SHARE LOUNGE Tsutaya<div class="wish-cat">sera · all-you-can-drink</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Wagyu ristorante<div class="wish-cat">sera · Yoroniku/Nakahara</div></div></div></div>
+<div class="wish-group"><div class="wish-glabel">7 maggio</div><div class="wish-row"><div class="wish-item" onclick="this.classList.toggle('done')">Ghibli Museum<div class="wish-cat">mattina · ★ biglietti 10/4</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Palazzo Imperiale<div class="wish-cat">pomeriggio · Higashi Gyoen</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Ginza<div class="wish-cat">pomeriggio</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Akihabara<div class="wish-cat">sera</div></div></div></div>
+<div class="wish-group"><div class="wish-glabel">8 maggio</div><div class="wish-row"><div class="wish-item" onclick="this.classList.toggle('done')">Edo-Tokyo Museum (esterno)<div class="wish-cat">mattina · Ryogoku</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Hokusai Museum<div class="wish-cat">mattina · Ryogoku</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Asakusa<div class="wish-cat">pomeriggio</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Jimbocho cinema<div class="wish-cat">sera</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Wagyu all-you-can-eat<div class="wish-cat">sera · Blake in Tokyo</div></div></div></div>
+<div class="wish-group"><div class="wish-glabel">9 maggio</div><div class="wish-row"><div class="wish-item" onclick="this.classList.toggle('done')">Tomba di Ozu<div class="wish-cat">mattina · Kita-Kamakura</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Kamakura<div class="wish-cat">mattina/pranzo</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Enoshima tramonto<div class="wish-cat">pomeriggio/sera</div></div></div></div>
+<div class="wish-group"><div class="wish-glabel">24–25 maggio</div><div class="wish-row"><div class="wish-item" onclick="this.classList.toggle('done')">Sumo — ultimo giorno<div class="wish-cat">24 mag · Ryogoku</div></div><div class="wish-item" onclick="this.classList.toggle('done')">Tsukiji mercato<div class="wish-cat">25 mag mattina</div></div></div></div>
+
+<div class="section-h" style="margin-top:16px">Sarebbe carino — slot suggeriti</div>
+<div class="sarebbe-grid">
+  <div class="sarebbe-item"><div class="s-dot"></div><div><div class="sarebbe-name">Edo-Tokyo Museum — visita collezione</div><div class="sarebbe-when">Candidato: 25 maggio mattina prima del volo, oppure 24 maggio all'arrivo da Kobe (Ryogoku sulla Sobu Line). Riaperto il 31 marzo 2026 dopo 4 anni — nuovo e aggiornato. ¥800.</div></div></div>
+  <div class="sarebbe-item"><div class="s-dot"></div><div><div class="sarebbe-name">Gundam a Odaiba</div><div class="sarebbe-when">Qualsiasi sera libera dopo le 19 — più bello illuminato di notte. Yurikamome Line da Shimbashi, ~15 min. Candidato: 25 maggio mattina.</div></div></div>
+  <div class="sarebbe-item"><div class="s-dot"></div><div><div class="sarebbe-name">Kabuki — singolo atto (makumi-seki)</div><div class="sarebbe-when">Kabuki-za a Ginza. Biglietti singolo atto ~¥1.000–2.000, nessuna prenotazione. Naturale il 7 maggio con Ginza già in programma.</div></div></div>
+  <div class="sarebbe-item"><div class="s-dot"></div><div><div class="sarebbe-name">Tsukiji mercato esterno</div><div class="sarebbe-when">Mattina presto 6:00–8:00. Candidato: 25 maggio colazione (già in itinerario) oppure 7 maggio prima del Ghibli.</div></div></div>
+  <div class="sarebbe-item"><div class="s-dot"></div><div><div class="sarebbe-name">Sento — bagno pubblico tradizionale</div><div class="sarebbe-when">Qualsiasi sera. Thermae-Yu vicino a Shinjuku (aperto 24h). ~¥500–1.000. Esperienza autentica, quasi nessun turista.</div></div></div>
+</div>
+
+<p class="note">Tag rosso = urgente. Arancione = presto. Verde = prima della partenza / all'arrivo. Clicca le checklist per spuntare, clicca gli item wishlist per segnarli come fatti.</p>
+</div>
+
+</div>
+<script>
+function showPhase(id){
+  document.querySelectorAll('.phase').forEach(p=>p.classList.remove('visible'));
+  document.getElementById('phase-'+id).classList.add('visible');
+  const ids=['t1','kam','via','t2','pre'];
+  document.querySelectorAll('.phase-tab').forEach((t,i)=>t.classList.toggle('active',ids[i]===id));
+}
+function showDay(ph,idx){
+  document.querySelectorAll('#phase-'+ph+' .day-card').forEach((c,i)=>c.classList.toggle('visible',i===idx));
+  document.querySelectorAll('#phase-'+ph+' .day-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+}
+</script>
+</body>
+</html>
