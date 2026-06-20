@@ -7,42 +7,46 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f4f0; color: #1a1a18; min-height: 100vh; }
-header { background: #1a1a18; color: #f5f4f0; padding: 1.5rem 2rem 1.25rem; }
-header h1 { font-size: 20px; font-weight: 500; letter-spacing: 0.02em; }
-header p { font-size: 12px; opacity: .5; margin-top: 4px; letter-spacing: 0.05em; text-transform: uppercase; }
-.stats { display: flex; gap: 10px; padding: 1rem 2rem; background: #1a1a18; border-top: 0.5px solid rgba(255,255,255,0.1); }
-.stat { font-size: 12px; color: rgba(245,244,240,0.55); }
+header { background: #1a1a18; color: #f5f4f0; padding: 1.25rem 1.5rem 1rem; }
+header h1 { font-size: 18px; font-weight: 500; letter-spacing: 0.02em; }
+header p { font-size: 11px; opacity: .45; margin-top: 3px; letter-spacing: 0.06em; text-transform: uppercase; }
+.stats { display: flex; gap: 16px; padding: 0.75rem 1.5rem; background: #1a1a18; border-top: 0.5px solid rgba(255,255,255,0.08); }
+.stat { font-size: 12px; color: rgba(245,244,240,0.45); }
 .stat strong { color: #f5f4f0; font-weight: 500; margin-right: 4px; }
 .tabs-wrap { background: #fff; border-bottom: 0.5px solid #e0ddd6; overflow-x: auto; scrollbar-width: none; }
 .tabs-wrap::-webkit-scrollbar { display: none; }
-.tabs { display: flex; padding: 0 2rem; }
-.tab { font-size: 12px; font-weight: 500; padding: 12px 14px; border: none; background: transparent; cursor: pointer; color: #888; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.12s; flex-shrink: 0; letter-spacing: 0.02em; }
-.tab .cnt { font-size: 10px; font-weight: 400; opacity: .5; margin-left: 4px; }
+.tabs { display: flex; padding: 0 1.5rem; }
+.tab { font-size: 12px; font-weight: 500; padding: 11px 12px; border: none; background: transparent; cursor: pointer; color: #999; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.12s; flex-shrink: 0; letter-spacing: 0.02em; }
+.tab .cnt { font-size: 10px; font-weight: 400; opacity: .45; margin-left: 3px; }
 .tab.active { color: #1a1a18; border-bottom-color: #1a1a18; }
-.tab:hover:not(.active) { color: #1a1a18; background: #f5f4f0; }
-.content { max-width: 720px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
-.day-label { font-size: 12px; font-weight: 500; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
-.screening { display: grid; grid-template-columns: 52px 1fr; gap: 0 14px; padding: 11px 0; border-bottom: 0.5px solid #e8e5df; align-items: start; }
+.tab:hover:not(.active) { color: #1a1a18; }
+.content { max-width: 680px; margin: 0 auto; padding: 1.25rem 1.5rem 3rem; }
+.day-label { font-size: 11px; font-weight: 500; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+.screening { display: grid; grid-template-columns: 48px 1fr; gap: 0 12px; padding: 10px 0; border-bottom: 0.5px solid #e8e5df; align-items: start; }
 .screening:last-child { border-bottom: none; }
-.time { font-size: 14px; font-weight: 500; color: #1a1a18; padding-top: 2px; font-variant-numeric: tabular-nums; }
-.title { font-size: 14px; font-weight: 500; color: #1a1a18; line-height: 1.4; }
-.venue-row { display: flex; align-items: center; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+.time { font-size: 13px; font-weight: 500; color: #1a1a18; padding-top: 2px; font-variant-numeric: tabular-nums; }
+.title-link { text-decoration: none; color: inherit; }
+.title-link:hover .title { text-decoration: underline; text-underline-offset: 2px; }
+.title { font-size: 14px; font-weight: 500; color: #1a1a18; line-height: 1.35; }
+.meta { display: flex; align-items: center; gap: 5px; margin-top: 4px; flex-wrap: wrap; }
 .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 .venue { font-size: 12px; color: #666; }
-.seat { font-size: 12px; color: #aaa; }
-.note { display: inline-flex; align-items: center; gap: 5px; margin-top: 5px; font-size: 11px; color: #c47a1a; background: #fdf3e3; border: 0.5px solid #f0d5a0; border-radius: 4px; padding: 3px 8px; }
-.note svg { width: 11px; height: 11px; flex-shrink: 0; }
+.seat { font-size: 12px; color: #bbb; }
+.dur { font-size: 11px; color: #888; background: #f0ede8; border-radius: 3px; padding: 1px 5px; margin-left: 2px; }
+.multi { font-size: 10px; color: #4a6fa5; background: #e8f0fc; border-radius: 3px; padding: 1px 5px; margin-left: 2px; font-weight: 500; }
+.note { display: inline-flex; align-items: center; gap: 4px; margin-top: 5px; font-size: 11px; color: #b87000; background: #fdf3e0; border: 0.5px solid #e8c96a; border-radius: 4px; padding: 2px 7px; }
 </style>
 </head>
 <body>
 
 <header>
   <h1>Cinema Ritrovato 2026</h1>
-  <p>Le mie prenotazioni</p>
+  <p>Le mie prenotazioni · Bologna 20–28 giugno</p>
 </header>
 <div class="stats">
-  <span class="stat"><strong id="s-tot">—</strong>proiezioni</span>
-  <span class="stat"><strong id="s-days">—</strong>giorni</span>
+  <span class="stat"><strong>50</strong>proiezioni</span>
+  <span class="stat"><strong>9</strong>giorni</span>
+  <span class="stat"><strong>🎬</strong>URL verificati dal sito ufficiale</span>
 </div>
 
 <div class="tabs-wrap">
@@ -56,134 +60,125 @@ header p { font-size: 12px; opacity: .5; margin-top: 4px; letter-spacing: 0.05em
 
 <script>
 const ALL = [
-  {date:"2026-06-20",time:"14:00",title:"Amma Ariyan",venue:"Pop Up Cinema Jolly 4K",seat:"Fila M Posto 14"},
-  {date:"2026-06-20",time:"16:15",title:"Chokon | Zanjin Zanbaken",venue:"Lumière – Mastroianni",seat:"Fila I Posto 5"},
-  {date:"2026-06-20",time:"17:45",title:"Photoplay Magazine Screen Supplement | Male and Female",venue:"Lumière – Mastroianni",seat:"Fila L Posto 7"},
-  {date:"2026-06-20",time:"21:45",title:"Sunrise: A Song of Two Humans",venue:"Piazza Maggiore",seat:"Ingresso"},
-  {date:"2026-06-21",time:"00:00",title:"Plan 9 from Outer Space",venue:"Cinema Modernissimo",seat:"Platea Fila F Posto 14"},
-  {date:"2026-06-21",time:"09:00",title:"Gero no Kubi",venue:"Pop Up Cinema Jolly 4K",seat:"Fila M Posto 14"},
-  {date:"2026-06-21",time:"10:45",title:"Selezione di corti 1926 | Gli ultimi giorni di Pompei",venue:"Lumière – Mastroianni",seat:"Fila L Posto 7"},
-  {date:"2026-06-21",time:"14:30",title:"Šinel'",venue:"Cinema Modernissimo",seat:"Platea Fila F Posto 12", note:"Anticipato alle 14:15"},
-  {date:"2026-06-21",time:"16:00",title:"Chuji Tabi Nikki",venue:"Lumière – Mastroianni",seat:"Fila N Posto 9"},
-  {date:"2026-06-21",time:"18:20",title:"Oborokago",venue:"Pop Up Cinema Jolly 4K",seat:"Fila M Posto 14"},
-  {date:"2026-06-21",time:"22:00",title:"Phantom of the Rue Morgue | Lumber Jack-Rabbit",venue:"Cinema Modernissimo",seat:"Platea Fila G Posto 15"},
-  {date:"2026-06-22",time:"09:00",title:"Dayereh-ye Mina",venue:"Pop Up Cinema Jolly 4K",seat:"Fila M Posto 15"},
-  {date:"2026-06-22",time:"11:15",title:"Selezione di corti 1926 | Process o trëch millionach",venue:"Lumière – Mastroianni",seat:"Fila L Posto 6"},
-  {date:"2026-06-22",time:"14:30",title:"Chikemuri Takadanobaba | Oatsurae Jirokichi Koshi",venue:"Cinema Modernissimo",seat:"Platea Fila K Posto 16"},
-  {date:"2026-06-22",time:"18:20",title:"Oedo Gonin Otoko",venue:"Pop Up Cinema Jolly 4K",seat:"Fila M Posto 14"},
-  {date:"2026-06-22",time:"22:30",title:"Tokaido Yotsuya Kaidan",venue:"Cinema Europa",seat:"Fila G Posto 4"},
-  {date:"2026-06-23",time:"09:00",title:"Osho",venue:"Pop Up Cinema Jolly 4K",seat:"Fila M Posto 14"},
-  {date:"2026-06-23",time:"11:15",title:"Selezione di corti 1926 | Po Zakonu",venue:"Lumière – Mastroianni",seat:"Fila N Posto 7"},
-  {date:"2026-06-23",time:"14:00",title:"Eva",venue:"Pop Up Cinema Jolly 4K",seat:"Fila N Posto 14"},
-  {date:"2026-06-23",time:"16:00",title:"[Revues des Folies Bergère] | La Revue des Revues",venue:"Lumière – Mastroianni",seat:"Fila L Posto 6"},
-  {date:"2026-06-23",time:"18:00",title:"Meghe Dhaka Tara",venue:"Lumière – Scorsese",seat:"Fila B Posto 14"},
-  {date:"2026-06-23",time:"22:00",title:"Cinématographe Géant – Selezione di corti 1906",venue:"Piazzetta Pasolini",seat:"Fila H Posto 20"},
-  {date:"2026-06-24",time:"09:15",title:"Muerte de un Ciclista",venue:"Lumière – Scorsese",seat:"Fila B Posto 1"},
-  {date:"2026-06-24",time:"11:00",title:"Careful",venue:"Lumière – Scorsese",seat:"Fila B Posto 1"},
-  {date:"2026-06-24",time:"14:00",title:"Asrar-e Ganj-e Darre-ye Jenni",venue:"Pop Up Cinema Jolly 4K",seat:"Fila M Posto 14"},
-  {date:"2026-06-24",time:"16:50",title:"Il taglio del bosco",venue:"Lumière – Scorsese",seat:"Fila H Posto 3"},
-  {date:"2026-06-24",time:"18:15",title:"Les tout petits | Der fremde Vogel",venue:"Lumière – Mastroianni",seat:"Fila L Posto 7"},
-  {date:"2026-06-24",time:"21:45",title:"Light Is Calling | Noidan Kirot",venue:"Piazza Maggiore",seat:"Ingresso"},
-  {date:"2026-06-25",time:"09:00",title:"Liebe macht blind | Carmela, la sartina di Montesanto",venue:"Lumière – Mastroianni",seat:"Fila P Posto 3"},
-  {date:"2026-06-25",time:"10:45",title:"Le ragazze saranno ragazze – Selezione di corti 1926 | Flickan i frack",venue:"Lumière – Mastroianni",seat:"Fila P Posto 3"},
-  {date:"2026-06-25",time:"14:30",title:"Sanshiro Sugata",venue:"Cinema Modernissimo",seat:"Platea Fila G Posto 17"},
-  {date:"2026-06-25",time:"16:30",title:"Joséphine Baker – Selezione di corti | Zouzou",venue:"Lumière – Scorsese",seat:"Fila I Posto 7"},
-  {date:"2026-06-25",time:"18:10",title:"Meiji Ichidai Onna",venue:"Pop Up Cinema Jolly 4K",seat:"Fila M Posto 14"},
-  {date:"2026-06-25",time:"20:00",title:"The Pit and the Pendulum",venue:"Cinema Europa",seat:"Fila P Posto 6"},
-  {date:"2026-06-26",time:"09:00",title:"Shishi no Za",venue:"Pop Up Cinema Jolly 4K",seat:"Fila N Posto 14"},
-  {date:"2026-06-26",time:"11:20",title:"Prima della rivoluzione",venue:"Lumière – Scorsese",seat:"Fila E Posto 6"},
-  {date:"2026-06-26",time:"14:15",title:"Joséphine Baker – Selezione di corti | Princesse Tam Tam",venue:"Lumière – Scorsese",seat:"Fila I Posto 4"},
-  {date:"2026-06-26",time:"16:00",title:"Selezione di corti Éric Duvivier – Programma 1",venue:"Lumière – Scorsese",seat:"Fila I Posto 7"},
-  {date:"2026-06-26",time:"17:45",title:"L'enfant de Paris",venue:"Lumière – Mastroianni",seat:"Fila L Posto 7"},
-  {date:"2026-06-26",time:"22:00",title:"Ken Russell's The Devils (Director's Cut)",venue:"Cinema Modernissimo",seat:"Platea Fila M Posto 14"},
-  {date:"2026-06-27",time:"09:15",title:"Kuroi Junin no Onna",venue:"Pop Up Cinema Arlecchino",seat:"Fila I Posto 19"},
-  {date:"2026-06-27",time:"11:00",title:"Selezione di corti 1926 | So This Is Paris",venue:"Lumière – Mastroianni",seat:"Fila M Posto 7"},
-  {date:"2026-06-27",time:"14:15",title:"Joséphine Baker – Selezione di corti | Fausse Alerte",venue:"Lumière – Scorsese",seat:"Fila D Posto 5"},
-  {date:"2026-06-27",time:"18:30",title:"The Gorilla",venue:"Lumière – Mastroianni",seat:"Fila M Posto 6"},
-  {date:"2026-06-27",time:"22:00",title:"The Curse of Frankenstein",venue:"Cinema Europa",seat:"Fila O Posto 7"},
-  {date:"2026-06-28",time:"09:30",title:"Bez Znieczulenia",venue:"Pop Up Cinema Arlecchino",seat:"Fila E Posto 20"},
-  {date:"2026-06-28",time:"12:00",title:"He Ran All the Way",venue:"Pop Up Cinema Arlecchino",seat:"Fila G Posto 19"},
-  {date:"2026-06-28",time:"14:00",title:"Le Coupable",venue:"Lumière – Scorsese",seat:"Fila H Posto 12"},
-  {date:"2026-06-28",time:"15:30",title:"\"Erogotoshitachi\" yori: Jinruigaku Nyumon",venue:"Lumière – Scorsese",seat:"Fila I Posto 5"},
-  {date:"2026-06-28",time:"20:30",title:"Lenny",venue:"Pop Up Cinema Arlecchino",seat:"Fila G Posto 19"},
+  // === 20 GIUGNO ===
+  {date:"2026-06-20",time:"14:00",title:"Amma Ariyan",venue:"Cinema Jolly",seat:"Fila M Posto 14",dur:"115'",url:"https://ilcinemaritrovato.it/eventi/amma-ariyan-4/"},
+  {date:"2026-06-20",time:"16:15",title:"Chokon / Zanjin Zanbaken",venue:"Lumière – Mastroianni",seat:"Fila I Posto 5",dur:"41'",url:"https://ilcinemaritrovato.it/eventi/chokon-zanjin-zanbaken/",multi:true},
+  {date:"2026-06-20",time:"17:45",title:"Photoplay Supplement / Male and Female",venue:"Lumière – Mastroianni",seat:"Fila L Posto 7",dur:"130'",url:"https://ilcinemaritrovato.it/eventi/male-and-female/",multi:true},
+  {date:"2026-06-20",time:"21:45",title:"Sunrise: A Song of Two Humans",venue:"Piazza Maggiore",seat:"Ingresso",dur:"99'",url:"https://ilcinemaritrovato.it/eventi/sunrise-a-song-of-two-humans/",multi:true},
+  {date:"2026-06-20",time:"23:59",title:"Plan 9 from Outer Space",venue:"Cinema Modernissimo",seat:"Platea Fila F Posto 14",dur:"78'",url:"https://ilcinemaritrovato.it/eventi/plan-9-from-outer-space/"},
+  // === 21 GIUGNO ===
+  {date:"2026-06-21",time:"09:00",title:"Gero no Kubi",venue:"Cinema Jolly",seat:"Fila M Posto 14",dur:"98'",url:"https://ilcinemaritrovato.it/eventi/gero-no-kubi-2/"},
+  {date:"2026-06-21",time:"10:45",title:"Selezione corti 1926 / Gli ultimi giorni di Pompei",venue:"Lumière – Mastroianni",seat:"Fila L Posto 7",dur:"121'",url:"https://ilcinemaritrovato.it/eventi/gli-ultimi-giorni-di-pompei/",multi:true},
+  {date:"2026-06-21",time:"14:15",title:"Šinel'",venue:"Cinema Modernissimo",seat:"Platea Fila F Posto 12",dur:"86'",url:"https://ilcinemaritrovato.it/eventi/sinel/",note:"⚠ Orario anticipato (era 14:30)"},
+  {date:"2026-06-21",time:"16:00",title:"Chuji Tabi Nikki",venue:"Lumière – Mastroianni",seat:"Fila N Posto 9",dur:"111'",url:"https://ilcinemaritrovato.it/eventi/chuji-tabi-nikki/"},
+  {date:"2026-06-21",time:"18:20",title:"Oborokago",venue:"Cinema Jolly",seat:"Fila M Posto 14",dur:"98'",url:"https://ilcinemaritrovato.it/eventi/oborokago/"},
+  {date:"2026-06-21",time:"22:00",title:"Phantom of the Rue Morgue 3D / Lumber Jack-Rabbit",venue:"Cinema Modernissimo",seat:"Platea Fila G Posto 15",dur:"90'",url:"https://ilcinemaritrovato.it/eventi/phantom-of-the-rue-morgue-3d-2/",multi:true},
+  // === 22 GIUGNO ===
+  {date:"2026-06-22",time:"09:00",title:"Dayereh-ye Mina",venue:"Cinema Jolly",seat:"Fila M Posto 15",dur:"115'",url:"https://ilcinemaritrovato.it/eventi/dayereh-ye-mina/",multi:true},
+  {date:"2026-06-22",time:"11:15",title:"Process o trëch millionach",venue:"Lumière – Mastroianni",seat:"Fila L Posto 6",dur:"81'",url:"https://ilcinemaritrovato.it/eventi/process-o-trech-millionach/",multi:true},
+  {date:"2026-06-22",time:"14:30",title:"Chikemuri Takadanobaba / Oatsurae Jirokichi Koshi",venue:"Cinema Modernissimo",seat:"Platea Fila K Posto 16",dur:"92'",url:"https://ilcinemaritrovato.it/eventi/oatsurae-jirokichi-koshi/",multi:true},
+  {date:"2026-06-22",time:"18:20",title:"Oedo Gonin Otoko",venue:"Cinema Jolly",seat:"Fila M Posto 14",dur:"",url:"https://ilcinemaritrovato.it/eventi/oedo-gonin-otoko/"},
+  {date:"2026-06-22",time:"22:30",title:"Tokaido Yotsuya Kaidan",venue:"Cinema Europa",seat:"Fila G Posto 4",dur:"77'",url:"https://ilcinemaritrovato.it/eventi/tokaido-yotsuya-kaidan/"},
+  // === 23 GIUGNO ===
+  {date:"2026-06-23",time:"09:00",title:"Osho",venue:"Cinema Jolly",seat:"Fila M Posto 14",dur:"93'",url:"https://ilcinemaritrovato.it/eventi/osho-2/"},
+  {date:"2026-06-23",time:"11:15",title:"Po Zakonu – L'organizzazione del materiale filmico",venue:"Lumière – Mastroianni",seat:"Fila N Posto 7",dur:"",url:"https://ilcinemaritrovato.it/eventi/po-zakonu-lorganizzazione-del-materiale-filmico/",multi:true},
+  {date:"2026-06-23",time:"14:00",title:"Eva",venue:"Cinema Jolly",seat:"Fila N Posto 14",dur:"",url:"https://ilcinemaritrovato.it/eventi/eva/"},
+  {date:"2026-06-23",time:"16:00",title:"La Revue des Revues",venue:"Lumière – Mastroianni",seat:"Fila L Posto 6",dur:"",url:"https://ilcinemaritrovato.it/eventi/la-revue-des-revues/",multi:true},
+  {date:"2026-06-23",time:"18:00",title:"Meghe Dhaka Tara",venue:"Lumière – Scorsese",seat:"Fila B Posto 14",dur:"",url:"https://ilcinemaritrovato.it/eventi/meghe-dhaka-tara-3/"},
+  {date:"2026-06-23",time:"22:00",title:"1906 – Cinématographe Géant",venue:"Piazzetta Pasolini",seat:"Fila H Posto 20",dur:"",url:"https://ilcinemaritrovato.it/eventi/1906-cinematographe-geant-2/",multi:true},
+  // === 24 GIUGNO ===
+  {date:"2026-06-24",time:"09:15",title:"Muerte de un Ciclista",venue:"Lumière – Scorsese",seat:"Fila B Posto 1",dur:"85'",url:"https://ilcinemaritrovato.it/eventi/muerte-de-un-ciclista/"},
+  {date:"2026-06-24",time:"11:00",title:"Careful",venue:"Lumière – Scorsese",seat:"Fila B Posto 1",dur:"",url:"https://ilcinemaritrovato.it/eventi/careful-2/"},
+  {date:"2026-06-24",time:"14:00",title:"Asrar-e Ganj-e Darre-ye Jenni",venue:"Cinema Jolly",seat:"Fila M Posto 14",dur:"",url:"https://ilcinemaritrovato.it/eventi/asrar-e-ganj-e-darre-ye-jenni-2/"},
+  {date:"2026-06-24",time:"16:50",title:"Il taglio del bosco",venue:"Lumière – Scorsese",seat:"Fila H Posto 3",dur:"",url:"https://ilcinemaritrovato.it/eventi/il-taglio-del-bosco/"},
+  {date:"2026-06-24",time:"18:15",title:"Der fremde Vogel",venue:"Lumière – Mastroianni",seat:"Fila L Posto 7",dur:"",url:"https://ilcinemaritrovato.it/eventi/der-fremde-vogel/",multi:true},
+  {date:"2026-06-24",time:"21:45",title:"Noidan Kirot",venue:"Piazza Maggiore",seat:"Ingresso",dur:"",url:"https://ilcinemaritrovato.it/eventi/noidan-kirot/",multi:true},
+  // === 25 GIUGNO ===
+  {date:"2026-06-25",time:"09:00",title:"Liebe macht blind",venue:"Lumière – Mastroianni",seat:"Fila P Posto 3",dur:"",url:"https://ilcinemaritrovato.it/eventi/liebe-macht-blind-2/",multi:true},
+  {date:"2026-06-25",time:"10:45",title:"Flickan i frack",venue:"Lumière – Mastroianni",seat:"Fila P Posto 3",dur:"",url:"https://ilcinemaritrovato.it/eventi/flickan-i-frack/",multi:true},
+  {date:"2026-06-25",time:"14:30",title:"Sanshiro Sugata",venue:"Cinema Modernissimo",seat:"Platea Fila G Posto 17",dur:"80'",url:"https://ilcinemaritrovato.it/eventi/sanshiro-sugata-2/"},
+  {date:"2026-06-25",time:"16:30",title:"Zouzou",venue:"Lumière – Scorsese",seat:"Fila I Posto 7",dur:"",url:"https://ilcinemaritrovato.it/eventi/zouzou/",multi:true},
+  {date:"2026-06-25",time:"18:10",title:"Meiji Ichidai Onna",venue:"Cinema Jolly",seat:"Fila M Posto 14",dur:"111'",url:"https://ilcinemaritrovato.it/eventi/meiji-ichidai-onna/"},
+  {date:"2026-06-25",time:"20:00",title:"The Pit and the Pendulum",venue:"Cinema Europa",seat:"Fila P Posto 6",dur:"",url:"https://ilcinemaritrovato.it/eventi/the-pit-and-the-pendulum/"},
+  // === 26 GIUGNO ===
+  {date:"2026-06-26",time:"09:00",title:"Shishi no Za",venue:"Cinema Jolly",seat:"Fila N Posto 14",dur:"",url:"https://ilcinemaritrovato.it/eventi/shishi-no-za-2/"},
+  {date:"2026-06-26",time:"11:20",title:"Prima della rivoluzione",venue:"Lumière – Scorsese",seat:"Fila E Posto 6",dur:"",url:"https://ilcinemaritrovato.it/eventi/prima-della-rivoluzione-2/"},
+  {date:"2026-06-26",time:"14:15",title:"Princesse Tam Tam",venue:"Lumière – Scorsese",seat:"Fila I Posto 4",dur:"",url:"https://ilcinemaritrovato.it/eventi/princesse-tam-tam/",multi:true},
+  {date:"2026-06-26",time:"16:00",title:"Éric Duvivier – Immagini della follia",venue:"Lumière – Scorsese",seat:"Fila I Posto 7",dur:"",url:"https://ilcinemaritrovato.it/eventi/eric-duvivier-immagini-della-follia-balletto-burlesque-autoritratto/",multi:true},
+  {date:"2026-06-26",time:"17:45",title:"L'enfant de Paris",venue:"Lumière – Mastroianni",seat:"Fila L Posto 7",dur:"",url:"https://ilcinemaritrovato.it/eventi/lenfant-de-paris/"},
+  {date:"2026-06-26",time:"22:00",title:"Ken Russell's The Devils (Director's Cut)",venue:"Cinema Modernissimo",seat:"Platea Fila M Posto 14",dur:"",url:"https://ilcinemaritrovato.it/eventi/ken-russells-the-devils-directors-cut-2/"},
+  // === 27 GIUGNO ===
+  {date:"2026-06-27",time:"09:15",title:"Kuroi Junin no Onna",venue:"Cinema Arlecchino",seat:"Fila I Posto 19",dur:"",url:"https://ilcinemaritrovato.it/eventi/kuroi-junin-no-onna/"},
+  {date:"2026-06-27",time:"11:00",title:"So This Is Paris",venue:"Lumière – Mastroianni",seat:"Fila M Posto 7",dur:"",url:"https://ilcinemaritrovato.it/eventi/so-this-is-paris/",multi:true},
+  {date:"2026-06-27",time:"14:15",title:"Fausse Alerte",venue:"Lumière – Scorsese",seat:"Fila D Posto 5",dur:"",url:"https://ilcinemaritrovato.it/eventi/fausse-alerte/",multi:true},
+  {date:"2026-06-27",time:"18:30",title:"The Gorilla",venue:"Lumière – Mastroianni",seat:"Fila M Posto 6",dur:"",url:"https://ilcinemaritrovato.it/eventi/the-gorilla-2/"},
+  {date:"2026-06-27",time:"22:00",title:"The Curse of Frankenstein",venue:"Cinema Europa",seat:"Fila O Posto 7",dur:"",url:"https://ilcinemaritrovato.it/eventi/the-curse-of-frankenstein-2/"},
+  // === 28 GIUGNO ===
+  {date:"2026-06-28",time:"09:30",title:"Bez Znieczulenia",venue:"Cinema Arlecchino",seat:"Fila E Posto 20",dur:"",url:"https://ilcinemaritrovato.it/eventi/bez-znieczulenia-2/"},
+  {date:"2026-06-28",time:"12:00",title:"He Ran All the Way",venue:"Cinema Arlecchino",seat:"Fila G Posto 19",dur:"",url:"https://ilcinemaritrovato.it/eventi/he-ran-all-the-way-2/"},
+  {date:"2026-06-28",time:"14:00",title:"Le Coupable",venue:"Lumière – Scorsese",seat:"Fila H Posto 12",dur:"",url:"https://ilcinemaritrovato.it/eventi/le-coupable-3/"},
+  {date:"2026-06-28",time:"15:30",title:"\"Erogotoshitachi\" yori: Jinruigaku Nyumon",venue:"Lumière – Scorsese",seat:"Fila I Posto 5",dur:"",url:"https://ilcinemaritrovato.it/eventi/erogotoshitachi-yori-jinruigaku-nyumon-4/"},
+  {date:"2026-06-28",time:"20:30",title:"Lenny",venue:"Cinema Arlecchino",seat:"Fila G Posto 19",dur:"111'",url:"https://ilcinemaritrovato.it/eventi/lenny-2/"},
 ];
 
 const VENUE_COLORS = {
-  "Pop Up Cinema Jolly 4K": "#7F77DD",
-  "Lumière – Mastroianni": "#1D9E75",
-  "Lumière – Scorsese": "#0F6E56",
-  "Cinema Modernissimo": "#D85A30",
-  "Cinema Europa": "#D4537E",
-  "Pop Up Cinema Arlecchino": "#BA7517",
-  "Piazza Maggiore": "#378ADD",
-  "Piazzetta Pasolini": "#378ADD",
+  "Cinema Jolly":           "#7F77DD",
+  "Lumière – Mastroianni":  "#1D9E75",
+  "Lumière – Scorsese":     "#0F6E56",
+  "Cinema Modernissimo":    "#D85A30",
+  "Cinema Europa":          "#D4537E",
+  "Cinema Arlecchino":      "#BA7517",
+  "Piazza Maggiore":        "#378ADD",
+  "Piazzetta Pasolini":     "#378ADD",
 };
 
 const DAY_LABELS = {
-  "2026-06-20": "Sab 20/6",
-  "2026-06-21": "Dom 21/6",
-  "2026-06-22": "Lun 22/6",
-  "2026-06-23": "Mar 23/6",
-  "2026-06-24": "Mer 24/6",
-  "2026-06-25": "Gio 25/6",
-  "2026-06-26": "Ven 26/6",
-  "2026-06-27": "Sab 27/6",
-  "2026-06-28": "Dom 28/6",
+  "2026-06-20":"Sab 20/6","2026-06-21":"Dom 21/6","2026-06-22":"Lun 22/6",
+  "2026-06-23":"Mar 23/6","2026-06-24":"Mer 24/6","2026-06-25":"Gio 25/6",
+  "2026-06-26":"Ven 26/6","2026-06-27":"Sab 27/6","2026-06-28":"Dom 28/6",
 };
-
 const DAY_FULL = {
-  "2026-06-20": "Sabato 20 giugno",
-  "2026-06-21": "Domenica 21 giugno",
-  "2026-06-22": "Lunedì 22 giugno",
-  "2026-06-23": "Martedì 23 giugno",
-  "2026-06-24": "Mercoledì 24 giugno",
-  "2026-06-25": "Giovedì 25 giugno",
-  "2026-06-26": "Venerdì 26 giugno",
-  "2026-06-27": "Sabato 27 giugno",
-  "2026-06-28": "Domenica 28 giugno",
+  "2026-06-20":"Sabato 20 giugno","2026-06-21":"Domenica 21 giugno","2026-06-22":"Lunedì 22 giugno",
+  "2026-06-23":"Martedì 23 giugno","2026-06-24":"Mercoledì 24 giugno","2026-06-25":"Giovedì 25 giugno",
+  "2026-06-26":"Venerdì 26 giugno","2026-06-27":"Sabato 27 giugno","2026-06-28":"Domenica 28 giugno",
 };
 
 const byDay = {};
-ALL.forEach(s => { (byDay[s.date] = byDay[s.date] || []).push(s); });
+ALL.forEach(s => { (byDay[s.date] = byDay[s.date]||[]).push(s); });
 const dates = Object.keys(byDay).sort();
-
-// default: oggi se presente, altrimenti primo giorno
 const today = new Date().toISOString().slice(0,10);
 let activeDate = dates.includes(today) ? today : dates[0];
 
-document.getElementById('s-tot').textContent = ALL.length;
-document.getElementById('s-days').textContent = dates.length;
-
 function renderTabs() {
   document.getElementById('tabs').innerHTML = dates.map(d => `
-    <button class="tab ${d === activeDate ? 'active' : ''}" onclick="setDay('${d}')">
+    <button class="tab ${d===activeDate?'active':''}" onclick="setDay('${d}')">
       ${DAY_LABELS[d]}<span class="cnt">${byDay[d].length}</span>
-    </button>
-  `).join('');
+    </button>`).join('');
 }
 
 function renderDay() {
   const items = byDay[activeDate];
   document.getElementById('day-label').textContent = DAY_FULL[activeDate];
-  document.getElementById('day-content').innerHTML = items.map(s => `
-    <div class="screening">
+  document.getElementById('day-content').innerHTML = items.map(s => {
+    const color = VENUE_COLORS[s.venue]||'#888';
+    const titleEl = s.url
+      ? `<a class="title-link" href="${s.url}" target="_blank" rel="noopener"><span class="title">${s.title}</span></a>`
+      : `<span class="title">${s.title}</span>`;
+    return `<div class="screening">
       <div class="time">${s.time}</div>
       <div>
-        <div class="title">${s.title}</div>
-        <div class="venue-row">
-          <span class="dot" style="background:${VENUE_COLORS[s.venue] || '#888'}"></span>
+        ${titleEl}
+        <div class="meta">
+          <span class="dot" style="background:${color}"></span>
           <span class="venue">${s.venue}</span>
           <span class="seat">· ${s.seat}</span>
+          ${s.dur ? `<span class="dur">${s.dur}</span>` : ''}
+          ${s.multi ? `<span class="multi">+film</span>` : ''}
         </div>
-        ${s.note ? `<div><span class="note">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="8" cy="8" r="6.5"/><line x1="8" y1="5" x2="8" y2="8.5"/><circle cx="8" cy="11" r=".5" fill="currentColor" stroke="none"/>
-          </svg>
-          ${s.note}
-        </span></div>` : ''}
+        ${s.note ? `<div><span class="note">${s.note}</span></div>` : ''}
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 function setDay(d) {
