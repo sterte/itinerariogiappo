@@ -9,146 +9,83 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --night:#14161C;
-  --panel:#1B1F28;
-  --panel-2:#232833;
-  --line:#333A47;
-  --paper:#E7E4DB;
-  --dim:#9AA2B1;
-  --brick:#C2523A;
-  --brick-deep:#8E3722;
-  --ochre:#E0A93F;
-  --canal:#5B8296;
-  --ok:#6FA88B;
+  --night:#14161C; --panel:#1B1F28; --panel-2:#232833; --line:#333A47;
+  --paper:#E7E4DB; --dim:#9AA2B1;
+  --brick:#C2523A; --ochre:#E0A93F; --canal:#5B8296; --ok:#6FA88B;
   --display:"Bricolage Grotesque",system-ui,sans-serif;
   --body:"Source Serif 4",Georgia,serif;
   --mono:"JetBrains Mono",ui-monospace,monospace;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;background:var(--night);color:var(--paper);
-  font-family:var(--body);font-size:16px;line-height:1.55;
-  padding-bottom:env(safe-area-inset-bottom);
-}
+body{margin:0;background:var(--night);color:var(--paper);font-family:var(--body);
+  font-size:16px;line-height:1.55;padding-bottom:env(safe-area-inset-bottom)}
 .wrap{max-width:820px;margin:0 auto;padding:0 18px}
 
-/* ---------- hero ---------- */
-header.hero{
-  border-bottom:1px solid var(--line);
-  background:
-    linear-gradient(180deg,rgba(194,82,58,.16),transparent 62%),
-    var(--night);
-  padding:38px 0 26px;
-}
-.eyebrow{
-  font-family:var(--mono);font-size:11px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--ochre);margin:0 0 14px;
-}
-h1{
-  font-family:var(--display);font-weight:800;
-  font-size:clamp(38px,10vw,68px);line-height:.94;
-  letter-spacing:-.03em;margin:0 0 6px;
-}
+header.hero{border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(194,82,58,.16),transparent 62%),var(--night);
+  padding:36px 0 26px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);margin:0 0 14px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,10vw,68px);line-height:.94;letter-spacing:-.03em;margin:0}
 h1 em{font-style:normal;color:var(--brick);display:block}
-.dek{color:var(--dim);margin:14px 0 0;max-width:52ch;font-size:15px}
+.dek{color:var(--dim);margin:14px 0 0;max-width:54ch;font-size:15px}
+.basefacts{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
+.fact{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-radius:3px;padding:5px 9px;color:var(--dim)}
+.fact b{color:var(--paper);font-weight:400}
 
-/* ---------- daylight bar (signature) ---------- */
-.daylight{margin:26px 0 0}
-.daylight-label{
-  font-family:var(--mono);font-size:10px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--dim);
-  display:flex;justify-content:space-between;margin-bottom:7px;
-}
-.daylight-track{
-  height:9px;border-radius:99px;overflow:hidden;display:flex;
-  border:1px solid var(--line);
-}
+.daylight{margin:24px 0 0}
+.daylight-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);display:flex;justify-content:space-between;margin-bottom:7px}
+.daylight-track{height:9px;border-radius:99px;overflow:hidden;display:flex;border:1px solid var(--line)}
 .dl-dark{background:#1F2430;flex:0 0 auto}
 .dl-light{background:linear-gradient(90deg,#6B5A46,#E0A93F 45%,#C2523A);flex:0 0 auto}
 .daylight-note{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:8px}
 
-/* ---------- tabs ---------- */
-nav.tabs{
-  position:sticky;top:0;z-index:20;background:rgba(20,22,28,.96);
-  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
-}
+nav.tabs{position:sticky;top:0;z-index:20;background:rgba(20,22,28,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .tabs-inner{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding:0 12px}
 .tabs-inner::-webkit-scrollbar{display:none}
-.tab{
-  flex:0 0 auto;background:none;border:0;border-bottom:2px solid transparent;
-  color:var(--dim);font-family:var(--mono);font-size:12px;letter-spacing:.06em;
-  padding:15px 12px;cursor:pointer;text-transform:uppercase;white-space:nowrap;
-}
+.tab{flex:0 0 auto;background:none;border:0;border-bottom:2px solid transparent;color:var(--dim);
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;padding:15px 12px;cursor:pointer;text-transform:uppercase;white-space:nowrap}
 .tab:hover{color:var(--paper)}
 .tab[aria-selected="true"]{color:var(--paper);border-bottom-color:var(--brick)}
 .tab:focus-visible{outline:2px solid var(--ochre);outline-offset:-2px}
 
-/* ---------- panels ---------- */
 .panel{display:none;padding:30px 0 70px}
 .panel.is-on{display:block}
-.day-head{margin:0 0 4px}
-.day-head h2{
-  font-family:var(--display);font-weight:700;font-size:clamp(26px,6vw,38px);
-  letter-spacing:-.02em;margin:0;line-height:1.05;
-}
+.day-head h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,6vw,38px);letter-spacing:-.02em;margin:0;line-height:1.05}
 .day-sub{font-family:var(--mono);font-size:12px;color:var(--ochre);letter-spacing:.08em;text-transform:uppercase;margin:8px 0 0}
-.day-intro{color:var(--dim);font-size:15px;margin:16px 0 30px;max-width:56ch}
+.day-intro{color:var(--dim);font-size:15px;margin:16px 0 26px;max-width:58ch}
 
-/* ---------- timeline ---------- */
-.stop{
-  display:grid;grid-template-columns:60px 1fr;gap:16px;
-  padding:0 0 26px;position:relative;
-}
-.stop::before{
-  content:"";position:absolute;left:59px;top:9px;bottom:-9px;
-  width:1px;background:var(--line);
-}
+.anchor-bar{display:flex;gap:10px;align-items:flex-start;background:var(--panel-2);border:1px solid var(--line);
+  border-left:3px solid var(--brick);border-radius:4px;padding:12px 15px;margin:0 0 28px}
+.anchor-bar .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--brick);flex:0 0 auto;padding-top:3px}
+.anchor-bar .v{font-size:14px;color:#CFCBC1}
+
+.stop{display:grid;grid-template-columns:60px 1fr;gap:16px;padding:0 0 26px;position:relative}
+.stop::before{content:"";position:absolute;left:59px;top:9px;bottom:-9px;width:1px;background:var(--line)}
 .stop:last-child::before{display:none}
-.stop-time{
-  font-family:var(--mono);font-size:13px;color:var(--ochre);
-  padding-top:1px;text-align:right;position:relative;
-}
-.stop-time::after{
-  content:"";position:absolute;right:-7px;top:7px;width:7px;height:7px;
-  border-radius:99px;background:var(--brick);border:2px solid var(--night);
-}
+.stop-time{font-family:var(--mono);font-size:13px;color:var(--ochre);padding-top:1px;text-align:right;position:relative}
+.stop-time::after{content:"";position:absolute;right:-7px;top:7px;width:7px;height:7px;border-radius:99px;background:var(--brick);border:2px solid var(--night)}
 .stop-time.dark-hour{color:var(--canal)}
 .stop-body{min-width:0}
-.stop h3{
-  font-family:var(--display);font-weight:700;font-size:19px;
-  letter-spacing:-.01em;margin:0 0 5px;
-}
+.stop h3{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em;margin:0 0 5px}
 .stop p{margin:0 0 8px;font-size:15px;color:#CFCBC1}
-.meta{
-  font-family:var(--mono);font-size:11px;color:var(--dim);
-  display:flex;flex-wrap:wrap;gap:6px 10px;margin-top:8px;
-}
-.chip{
-  display:inline-flex;align-items:center;gap:5px;
-  border:1px solid var(--line);border-radius:3px;padding:3px 7px;
-}
+.meta{font-family:var(--mono);font-size:11px;color:var(--dim);display:flex;flex-wrap:wrap;gap:6px 10px;margin-top:8px}
+.chip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:3px;padding:3px 7px}
 .chip.transit{border-color:var(--canal);color:#A9C6D3}
 .chip.hours{border-color:#4A5265}
 .chip.warn{border-color:var(--brick);color:#E9917C;background:rgba(194,82,58,.1)}
 .chip.book{border-color:var(--ochre);color:var(--ochre)}
+.alt{border-left:2px solid var(--canal);background:rgba(91,130,150,.07);padding:9px 13px;margin:10px 0 0;font-size:14px;color:#BFC6CF}
+.alt b{font-family:var(--display);font-weight:700;color:#A9C6D3;font-size:13px;letter-spacing:.02em}
 
-/* ---------- callouts ---------- */
-.note{
-  border-left:2px solid var(--ochre);background:var(--panel);
-  padding:14px 16px;margin:26px 0;font-size:15px;
-}
+.note{border-left:2px solid var(--ochre);background:var(--panel);padding:14px 16px;margin:26px 0;font-size:15px}
 .note strong{color:var(--ochre);font-family:var(--display);font-weight:700}
 .note.alarm{border-left-color:var(--brick)}
 .note.alarm strong{color:var(--brick)}
 
-/* ---------- generic blocks ---------- */
-h3.sect{
-  font-family:var(--display);font-weight:700;font-size:22px;
-  letter-spacing:-.01em;margin:40px 0 14px;padding-top:22px;
-  border-top:1px solid var(--line);
-}
+h3.sect{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.01em;margin:40px 0 14px;padding-top:22px;border-top:1px solid var(--line)}
 h3.sect:first-of-type{border-top:0;padding-top:0;margin-top:0}
+h4.sub{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ochre);margin:26px 0 10px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:16px 18px;margin:0 0 12px}
 .card h4{font-family:var(--display);font-weight:700;font-size:16px;margin:0 0 4px}
 .card p{margin:0;font-size:15px;color:#CFCBC1}
@@ -157,36 +94,25 @@ ul.plain{list-style:none;padding:0;margin:0}
 ul.plain li{padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
 ul.plain li:last-child{border-bottom:0}
 
-/* ---------- checklist ---------- */
-.check{
-  display:flex;gap:12px;align-items:flex-start;
-  background:var(--panel);border:1px solid var(--line);border-radius:5px;
-  padding:14px 16px;margin-bottom:9px;cursor:pointer;
-}
+.check{display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);
+  border-radius:5px;padding:14px 16px;margin-bottom:9px;cursor:pointer}
 .check:hover{border-color:#414A5B}
-.check input{
-  appearance:none;flex:0 0 auto;width:19px;height:19px;margin:2px 0 0;
-  border:1.5px solid var(--dim);border-radius:3px;cursor:pointer;position:relative;background:transparent;
-}
+.check.hot{border-left:3px solid var(--brick)}
+.check input{appearance:none;flex:0 0 auto;width:19px;height:19px;margin:2px 0 0;border:1.5px solid var(--dim);
+  border-radius:3px;cursor:pointer;position:relative;background:transparent}
 .check input:checked{background:var(--ok);border-color:var(--ok)}
-.check input:checked::after{
-  content:"";position:absolute;left:5.5px;top:1.5px;width:5px;height:10px;
-  border:solid var(--night);border-width:0 2px 2px 0;transform:rotate(43deg);
-}
+.check input:checked::after{content:"";position:absolute;left:5.5px;top:1.5px;width:5px;height:10px;
+  border:solid var(--night);border-width:0 2px 2px 0;transform:rotate(43deg)}
 .check input:focus-visible{outline:2px solid var(--ochre);outline-offset:2px}
 .check-txt{min-width:0}
 .check-txt b{font-family:var(--display);font-weight:700;font-size:15px;display:block}
 .check-txt span{font-size:14px;color:var(--dim)}
 .check.done .check-txt b,.check.done .check-txt span{opacity:.42;text-decoration:line-through}
-.reset{
-  background:none;border:1px solid var(--line);color:var(--dim);
-  font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;
-  padding:8px 12px;border-radius:3px;cursor:pointer;margin-top:6px;
-}
+.reset{background:none;border:1px solid var(--line);color:var(--dim);font-family:var(--mono);font-size:11px;
+  text-transform:uppercase;letter-spacing:.08em;padding:8px 12px;border-radius:3px;cursor:pointer;margin-top:6px}
 .reset:hover{color:var(--paper);border-color:var(--dim)}
 
-/* ---------- verification table ---------- */
-.ver{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.ver{border:1px solid var(--line);border-radius:5px;overflow:hidden}
 .ver-row{display:grid;grid-template-columns:76px 1fr;gap:12px;padding:13px 15px;border-bottom:1px solid var(--line);align-items:start}
 .ver-row:last-child{border-bottom:0}
 .ver-row:nth-child(odd){background:var(--panel)}
@@ -204,6 +130,7 @@ a{color:var(--canal)}
   .stop{grid-template-columns:48px 1fr;gap:13px}
   .stop::before{left:47px}
   .ver-row{grid-template-columns:1fr;gap:5px}
+  .anchor-bar{flex-direction:column;gap:6px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -212,28 +139,37 @@ a{color:var(--canal)}
 
 <header class="hero">
   <div class="wrap">
-    <p class="eyebrow">5 — 8 dicembre 2026 · quattro giorni</p>
+    <p class="eyebrow">5 — 8 dicembre 2026 · in due</p>
     <h1>Amsterdam<em>al buio</em></h1>
-    <p class="dek">Un ponte costruito attorno a un solo appuntamento fisso — Kusama allo Stedelijk, lunedì mattina — e per il resto tenuto lontano dal centro. Tutti gli orari qui sotto sono stati verificati sulle fonti ufficiali; quelli che non ho potuto confermare sono segnalati.</p>
+    <p class="dek">Programma ricostruito sui vincoli reali: volo in arrivo alle 8:40, hotel a Oud-Zuid, Kusama lunedì alle 11, volo di ritorno alle 14:40. Tre dei quattro giorni sono stati rimaneggiati rispetto alla prima versione.</p>
+
+    <div class="basefacts">
+      <span class="fact">Arrivo <b>sab 08:40</b></span>
+      <span class="fact">Ritorno <b>mar 14:40</b></span>
+      <span class="fact">Kusama <b>lun 11:00</b></span>
+      <span class="fact">Budget Hotel Trianon · <b>J.W. Brouwersstraat 3</b></span>
+      <span class="fact">Check-in <b>14:00</b> · bagagli prima</span>
+    </div>
 
     <div class="daylight">
-      <div class="daylight-label"><span>06:00</span><span>Luce utile a dicembre</span><span>22:00</span></div>
+      <div class="daylight-label"><span>06:00</span><span>Luce utile</span><span>23:00</span></div>
       <div class="daylight-track">
         <div class="dl-dark" style="flex-basis:16%"></div>
-        <div class="dl-light" style="flex-basis:49%"></div>
-        <div class="dl-dark" style="flex-basis:35%"></div>
+        <div class="dl-light" style="flex-basis:46%"></div>
+        <div class="dl-dark" style="flex-basis:38%"></div>
       </div>
-      <p class="daylight-note">Alba ~08:35 · Tramonto ~16:30 · Otto ore scarse di luce al giorno</p>
+      <p class="daylight-note">Alba ~08:40 · Tramonto ~16:30 · Luci del Light Festival 16:30–23:00</p>
     </div>
   </div>
 </header>
 
-<nav class="tabs" aria-label="Giorni del viaggio">
+<nav class="tabs" aria-label="Sezioni">
   <div class="tabs-inner" role="tablist">
     <button class="tab" role="tab" aria-selected="true" aria-controls="d1" id="t1">Sab 5</button>
     <button class="tab" role="tab" aria-selected="false" aria-controls="d2" id="t2">Dom 6</button>
     <button class="tab" role="tab" aria-selected="false" aria-controls="d3" id="t3">Lun 7</button>
     <button class="tab" role="tab" aria-selected="false" aria-controls="d4" id="t4">Mar 8</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="dt" id="tt">To-do</button>
     <button class="tab" role="tab" aria-selected="false" aria-controls="dp" id="tp">Pratica</button>
     <button class="tab" role="tab" aria-selected="false" aria-controls="dv" id="tv">Verifiche</button>
   </div>
@@ -241,65 +177,70 @@ a{color:var(--canal)}
 
 <main class="wrap">
 
-<!-- ============ SABATO ============ -->
+<!-- ===================== SABATO ===================== -->
 <section class="panel is-on" id="d1" role="tabpanel" aria-labelledby="t1">
   <div class="day-head">
-    <h2>Arrivo, Wallen, De Pijp</h2>
+    <h2>Sud compatto</h2>
     <p class="day-sub">Sabato 5 dicembre · Sinterklaas</p>
   </div>
-  <p class="day-intro">Giornata di arrivo ma anche la più piena, perché il volo del mattino ti consegna la città alle nove. E perché la sera è pakjesavond: gli olandesi si chiudono in casa a scartare regali e la città si svuota in modo che non rivedrai in nessun altro momento dell'anno.</p>
+  <p class="day-intro">Giorno di arrivo tenuto volutamente vicino all'hotel. L'atterraggio alle 8:40 e il check-in alle 14 hanno ucciso il piano originale delle Wallen all'alba: quello è slittato a domenica. Oggi resti a sud, dove tutto è a quindici minuti dalla camera.</p>
+
+  <div class="anchor-bar">
+    <span class="k">Vincolo</span>
+    <span class="v">L'Albert Cuypmarkt la domenica è chiuso e De Dageraad apre solo da giovedì a domenica: questo blocco <em>deve</em> stare oggi. Il tour inglese di De Dageraad è alle 15:30 e dura circa un'ora.</span>
+  </div>
 
   <div class="stop">
-    <div class="stop-time">07:55</div>
+    <div class="stop-time">08:40</div>
     <div class="stop-body">
-      <h3>Schiphol → Amsterdam Centraal</h3>
-      <p>Treno diretto dal piano interrato del terminal, circa 17 minuti. Si paga appoggiando la carta contactless al tornello, in entrata e in uscita. Niente biglietto da comprare.</p>
-      <div class="meta"><span class="chip transit">Treno NS · 17 min</span><span class="chip warn">Orario volo da riconfermare</span></div>
+      <h3>Atterraggio a Schiphol</h3>
+      <p>Alle 8:40 il sole sorge: ti si accende la giornata mentre rulli. Con bagaglio in stiva conta di essere fuori verso le 9:10, con solo a mano verso le 8:55.</p>
     </div>
   </div>
 
   <div class="stop">
-    <div class="stop-time">09:00</div>
+    <div class="stop-time">09:20</div>
     <div class="stop-body">
-      <h3>De Wallen a piedi</h3>
-      <p>Canali vuoti, luce grigia, quattro persone che portano fuori il cane. Le case seicentesche più belle della città finalmente visibili. La Oude Kerk apre alle 10 se vuoi entrare, ma il punto è la strada.</p>
-      <div class="meta"><span class="chip hours">Oude Kerk lun–sab 10–18</span><span class="chip warn">Vietato fumare all'aperto · multa 100 €</span><span class="chip warn">Vietato fotografare le vetrine</span></div>
+      <h3>Schiphol → Amsterdam Zuid</h3>
+      <p>Non scendere a Centraal: l'hotel è a Oud-Zuid e da Zuid sono sei minuti di treno invece di diciassette. Dalla stazione Zuid tram o un quarto d'ora a piedi fino a J.W. Brouwersstraat.</p>
+      <div class="meta"><span class="chip transit">Treno NS · 6–8 min · carta contactless</span><span class="chip transit">Poi tram 5 / 12 verso Museumplein</span></div>
     </div>
   </div>
 
   <div class="stop">
-    <div class="stop-time">11:30</div>
+    <div class="stop-time">09:50</div>
     <div class="stop-body">
-      <h3>Deposito bagagli e trasferimento a sud</h3>
-      <p>Se l'hotel è a De Pijp lasci i bagagli e prosegui a piedi. Altrimenti metro 52, che scende dritta lungo l'asse nord–sud e ferma a De Pijp.</p>
-      <div class="meta"><span class="chip transit">Metro 52 · fermata De Pijp</span></div>
+      <h3>Bagagli al Trianon</h3>
+      <p>Camera dalle 14, ma le valigie le lasci subito. Esci leggero: non tornerai prima di sera.</p>
+      <div class="meta"><span class="chip hours">Check-in 14:00</span><span class="chip transit">J.W. Brouwersstraat 3, dietro il Concertgebouw</span></div>
     </div>
   </div>
 
   <div class="stop">
-    <div class="stop-time">12:15</div>
+    <div class="stop-time">10:45</div>
     <div class="stop-body">
-      <h3>Albert Cuypmarkt</h3>
-      <p>D'inverno è tutta un'altra cosa rispetto al mercato-cartolina di luglio: meno bancarelle di souvenir, più spesa vera. Pranzo in piedi qui.</p>
-      <div class="meta"><span class="chip hours">lun–sab 09:30–17:00</span><span class="chip warn">Chiuso la domenica: è oggi o mai più</span></div>
+      <h3>De Pijp e Albert Cuypmarkt</h3>
+      <p>Dall'hotel sono due fermate o venti minuti a piedi verso est. D'inverno il mercato è meno souvenir e più spesa vera. Colazione tardi o pranzo in piedi qui: stroopwafel caldo, aringa se te la senti, pesce fritto.</p>
+      <div class="meta"><span class="chip hours">lun–sab 09:30–17:00</span><span class="chip warn">Chiuso domenica: è oggi o mai più</span><span class="chip transit">Tram 12 · Albert Cuypstraat</span></div>
+      <div class="alt"><b>Se piove forte</b> — il mercato all'aperto diventa un supplizio. Ripiega sulle strade laterali di De Pijp, Gerard Doustraat e Eerste van der Helststraat, dove i negozi sono al coperto.</div>
     </div>
   </div>
 
   <div class="stop">
-    <div class="stop-time">14:00</div>
+    <div class="stop-time">14:30</div>
     <div class="stop-body">
       <h3>De Dageraad</h3>
-      <p>Il complesso di edilizia popolare che ricordavi. Amsterdamse School allo stato puro: De Klerk e Kramer progettarono facciate, retri e planimetrie come un'opera unica. L'isolato si gira liberamente a piedi; il centro visite è piccolo ma è da lì che parte il tour.</p>
-      <div class="meta"><span class="chip hours">gio–dom 13:00–17:00</span><span class="chip book">Tour 13:30 / 14:30 / 15:30 — il 15:30 è in inglese</span><span class="chip transit">Burgemeester Tellegenstraat 128</span></div>
+      <p>Il complesso di edilizia popolare che ricordavi dalle altre volte. Amsterdamse School allo stato puro: De Klerk e Kramer progettarono facciate, retri e planimetrie come un'opera sola. Arriva presto e gira l'isolato da solo, poi prendi il tour.</p>
+      <div class="meta"><span class="chip hours">gio–dom 13:00–17:00</span><span class="chip book">Tour 13:30 / 14:30 / 15:30 — il 15:30 è in inglese</span><span class="chip book">7,50 €</span><span class="chip transit">Burgemeester Tellegenstraat 128</span></div>
+      <div class="alt"><b>Alternativa gratis</b> — l'esterno è il vero spettacolo e si gira liberamente. Se il tour ti sembra troppo, cammina il Coöperatiehof e risparmia un'ora.</div>
     </div>
   </div>
 
   <div class="stop">
-    <div class="stop-time dark-hour">17:00</div>
+    <div class="stop-time dark-hour">16:45</div>
     <div class="stop-body">
-      <h3>Buio, e la città si svuota</h3>
-      <p>Pakjesavond è una faccenda domestica. Molti negozi chiudono presto, le strade si spopolano e i ristoranti che di solito richiedono tre settimane di anticipo hanno tavoli liberi. Approfittane.</p>
-      <div class="meta"><span class="chip warn">5 dicembre non è festivo, ma la sera la città chiude</span></div>
+      <h3>Rientro, check-in, pausa</h3>
+      <p>È già buio da un quarto d'ora. Camera, doccia, e lascia perdere l'idea di infilare un'altra cosa: sei in piedi da prima dell'alba.</p>
     </div>
   </div>
 
@@ -307,29 +248,40 @@ a{color:var(--canal)}
     <div class="stop-time dark-hour">19:30</div>
     <div class="stop-body">
       <h3>Cena · Warung Spang Makandra</h3>
-      <p>Surinamese, in pieno De Pijp, a cinque minuti dal mercato. Rames abbondanti, bara e banana fritta, circa 25 € a testa con da bere. Il sabato tira fino a mezzanotte.</p>
-      <div class="meta"><span class="chip hours">sab 11:00–24:00</span><span class="chip transit">Gerard Doustraat 33</span><span class="chip book">Prenota</span></div>
+      <p>Surinamese in De Pijp. Saoto, roti, baka bana, satay con salsa d'arachidi. Circa 25 € a testa. Ed è pakjesavond: gli olandesi sono chiusi in casa a scartare regali, la città si svuota in modo surreale e stasera un tavolo lo trovi.</p>
+      <div class="meta"><span class="chip hours">sab 11:00–24:00</span><span class="chip transit">Gerard Doustraat 33</span><span class="chip book">Prenota comunque</span></div>
+      <div class="alt"><b>Se è pieno</b> — Roopram Roti su Van Woustraat, roti di pollo mangiato quasi in piedi, a cinque minuti. Occhio: chiuso il lunedì, quindi oggi o domenica sono le uniche occasioni.</div>
     </div>
-  </div>
-
-  <div class="note">
-    <strong>Alternativa surinamese</strong> — Roopram Roti su Van Woustraat, roti di pollo mangiato quasi in piedi. Ma è <em>chiuso il lunedì</em>, quindi se vuoi provarlo deve stare oggi o domenica.
   </div>
 </section>
 
-<!-- ============ DOMENICA ============ -->
+<!-- ===================== DOMENICA ===================== -->
 <section class="panel" id="d2" role="tabpanel" aria-labelledby="t2">
   <div class="day-head">
-    <h2>Amsterdamse School e Noord</h2>
-    <p class="day-sub">Domenica 6 dicembre</p>
+    <h2>Wallen, Amsterdamse School, Noord</h2>
+    <p class="day-sub">Domenica 6 dicembre · il giorno pieno</p>
   </div>
-  <p class="day-intro">Mattina lenta sui canali, pomeriggio dentro un appartamento operaio del 1921, sera dall'altra parte dell'acqua. È l'unico giorno in cui V12 è aperto, quindi la cena è vincolata.</p>
+  <p class="day-intro">Il giorno più lungo e quello con più spostamenti. Le Wallen sono finite qui perché la domenica mattina è ancora più vuota del sabato: gli olandesi dormono e i turisti del weekend non sono ancora in strada.</p>
+
+  <div class="anchor-bar">
+    <span class="k">Vincoli</span>
+    <span class="v">Due prenotazioni già fatte: tour di Het Schip alle 15:00 e V12 alle 20:30. Fra le due hai cinque ore e mezza, che è esattamente quanto serve per Noord senza fretta. Il resto della giornata si incastra attorno a questi due orari.</span>
+  </div>
+
+  <div class="stop">
+    <div class="stop-time">09:00</div>
+    <div class="stop-body">
+      <h3>De Wallen deserte</h3>
+      <p>Tram fino a Centraal e poi a piedi. Canali vuoti, luce grigia, quattro vecchietti col cane, e le case seicentesche più belle della città finalmente visibili senza la calca. La sera è un parcheggio umano; adesso è un'altra città.</p>
+      <div class="meta"><span class="chip warn">Vietato fumare all'aperto qui · 100 € sul posto</span><span class="chip warn">Vietato fotografare le vetrine</span><span class="chip hours">Oude Kerk la domenica apre solo alle 13:00</span></div>
+    </div>
+  </div>
 
   <div class="stop">
     <div class="stop-time">10:30</div>
     <div class="stop-body">
       <h3>Jordaan senza meta</h3>
-      <p>Egelantiersgracht, Bloemgracht, i hofjes se trovi un cancello aperto. La domenica mattina è il momento in cui il quartiere assomiglia ancora a se stesso.</p>
+      <p>Un quarto d'ora a piedi a ovest. Egelantiersgracht, Bloemgracht, e gli hofjes se trovi un cancello socchiuso. La domenica mattina il quartiere assomiglia ancora a se stesso.</p>
     </div>
   </div>
 
@@ -337,7 +289,7 @@ a{color:var(--canal)}
     <div class="stop-time">12:00</div>
     <div class="stop-body">
       <h3>Café 't Smalle</h3>
-      <p>Bruin café del 1786 sull'Egelantiersgracht. Genever e salsiccia affumicata: non è un pranzo, è il rituale. Poi mangi qualcosa di serio più tardi.</p>
+      <p>Bruin café del 1786 sull'Egelantiersgracht. Genever e qualcosa di salato: non è un pranzo, è il rituale sotto la pioggia. Mangia qualcosa di vero dopo, perché la cena è tardi.</p>
       <div class="meta"><span class="chip hours">dom 12:00–22:00</span></div>
     </div>
   </div>
@@ -346,8 +298,8 @@ a{color:var(--canal)}
     <div class="stop-time">14:15</div>
     <div class="stop-body">
       <h3>Bus 22 verso Spaarndammerbuurt</h3>
-      <p>Dalla Centraal, fermata Oostzaanstraat o Spaarndammerstraat, poi trecento metri a piedi. Arriva praticamente davanti.</p>
-      <div class="meta"><span class="chip transit">Bus 22 · anche bus 48</span></div>
+      <p>Dalla Centraal, fermata Oostzaanstraat o Spaarndammerstraat, poi trecento metri. Arriva praticamente davanti al museo.</p>
+      <div class="meta"><span class="chip transit">Bus 22 · in alternativa bus 48</span><span class="chip warn">Non perdere il bus: il tour delle 15 non aspetta</span></div>
     </div>
   </div>
 
@@ -355,8 +307,9 @@ a{color:var(--canal)}
     <div class="stop-time">15:00</div>
     <div class="stop-body">
       <h3>Museum Het Schip · tour in inglese</h3>
-      <p>L'isolato a forma di nave di Michel de Klerk, mattoni ondulati e una torre che non serve a niente. Il tour dura 45 minuti e porta dentro l'ufficio postale, una baracca ottocentesca ricostruita e un appartamento operaio arredato anni Venti. Senza tour vedi solo le mostre al primo piano, che valgono molto meno.</p>
-      <div class="meta"><span class="chip hours">mar–dom 11:00–17:00 · chiuso lunedì</span><span class="chip book">Tour ogni ora dalle 12 alle 16 — quello delle 15:00 è sempre in inglese</span><span class="chip transit">Oostzaanstraat 45</span></div>
+      <p>L'isolato a forma di nave di De Klerk, mattoni ondulati, finestre di forme improbabili e una torre che non serve a niente. Quarantacinque minuti dentro l'ufficio postale originale, una baracca ottocentesca ricostruita e un appartamento operaio arredato anni Venti. Senza il tour vedi solo le mostre al primo piano, che valgono molto meno.</p>
+      <div class="meta"><span class="chip book">Prenotato · tour inglese ore 15:00</span><span class="chip hours">mar–dom 11:00–17:00 · chiuso lunedì</span><span class="chip book">16,50 €, tour incluso</span></div>
+      <div class="alt"><b>Parte del tour è all'aperto</b> — con pioggia battente diventa sgradevole. Cappello e giacca impermeabile, non l'ombrello: lì tira vento.</div>
     </div>
   </div>
 
@@ -364,8 +317,8 @@ a{color:var(--canal)}
     <div class="stop-time dark-hour">17:15</div>
     <div class="stop-body">
       <h3>Traghetto per Noord</h3>
-      <p>Dal retro della Centraal, gratuito, ogni pochi minuti, anche di notte. Uno dei pochi piaceri gratis rimasti in città.</p>
-      <div class="meta"><span class="chip transit">Traghetto GVB · gratis</span></div>
+      <p>Dal retro della Centraal, gratuito, ogni pochi minuti, anche di notte. Attraversare l'IJ al buio con la città alle spalle è uno dei pochi piaceri gratis rimasti.</p>
+      <div class="meta"><span class="chip transit">Traghetto GVB · gratis, nessun tornello</span></div>
     </div>
   </div>
 
@@ -373,7 +326,7 @@ a{color:var(--canal)}
     <div class="stop-time dark-hour">17:40</div>
     <div class="stop-body">
       <h3>EYE Filmmuseum</h3>
-      <p>Attracco di Buiksloterweg. Oltre alle mostre c'è la cineteca sotterranea, che programma in pellicola roba che non passa altrove. Controlla il cartellone: potresti trovarci il motivo per fermarti due ore.</p>
+      <p>Attracco di Buiksloterweg. Oltre alle mostre c'è la cineteca sotterranea, che programma in pellicola roba che non passa altrove. Guarda il cartellone prima: potresti trovarci il motivo per fermarti due ore invece di una.</p>
       <div class="meta"><span class="chip hours">dom 10:00–22:00</span><span class="chip transit">IJpromenade 1</span></div>
     </div>
   </div>
@@ -382,211 +335,304 @@ a{color:var(--canal)}
     <div class="stop-time dark-hour">19:00</div>
     <div class="stop-body">
       <h3>NDSM al buio</h3>
-      <p>Ex cantiere navale, capannoni, murales alti dieci metri. Di giorno è un piazzale ventoso; al buio, con le luci industriali accese, funziona molto meglio.</p>
+      <p>Ex cantiere navale: capannoni, gru, murales alti dieci metri. Di giorno è un piazzale ventoso, al buio con le luci industriali accese funziona molto meglio. Hai un'ora e mezza prima di cena, quindi puoi anche fermarti a bere qualcosa in uno dei locali sulla banchina.</p>
       <div class="meta"><span class="chip transit">Traghetto NDSM dalla Centraal</span></div>
     </div>
   </div>
 
   <div class="stop">
-    <div class="stop-time dark-hour">20:00</div>
+    <div class="stop-time dark-hour">20:30</div>
     <div class="stop-body">
       <h3>Cena · Restaurant V12</h3>
-      <p>Quindici minuti a piedi da NDSM. Menu che cambia ogni sei settimane, vini naturali, zona industriale sull'acqua. Fascia di prezzo più alta del resto del viaggio.</p>
-      <div class="meta"><span class="chip hours">dom 18:00–23:00</span><span class="chip warn">Chiuso lunedì e martedì: stasera è l'unica finestra</span><span class="chip book">Prenota</span></div>
+      <p>Menu fisso a tre o quattro portate che cambia ogni sei settimane, vini naturali, zona industriale sull'acqua. Non fanno à la carte. È il pasto più caro del viaggio e l'unico con un vero progetto di cucina. Con l'inizio alle 20:30 e tre o quattro portate, conta di alzarti verso le 22:30.</p>
+      <div class="meta"><span class="chip book">Prenotato · domenica 20:30</span><span class="chip hours">dom 18:00–23:00</span><span class="chip warn">Chiuso lunedì e martedì: è l'unica sera possibile</span><span class="chip transit">Veldbiesstraat 10 · 15 min a piedi da NDSM</span></div>
+      <div class="alt"><b>Il rientro è il punto da risolvere</b> — alle 22:30 sei a Noord, dalla parte sbagliata dell'acqua, e devi tornare a Oud-Zuid. Verifica gli orari dei traghetti prima di sederti: le linee principali per la Centraal vanno tutta la notte, quella di NDSM no. In alternativa metti in conto un taxi, che da Noord a Oud-Zuid è una corsa lunga.</div>
     </div>
+  </div>
+
+  <div class="note alarm">
+    <strong>L'unico vero rischio della domenica</strong> — cena alle 20:30 a Noord significa rientro verso le 23. Controlla gli orari dei traghetti <em>la mattina</em>, non quando esci dal ristorante: se la linea che ti serve ha già chiuso, l'alternativa è un taxi e tanto vale saperlo prima.
   </div>
 </section>
 
-<!-- ============ LUNEDI ============ -->
+<!-- ===================== LUNEDI ===================== -->
 <section class="panel" id="d3" role="tabpanel" aria-labelledby="t3">
   <div class="day-head">
     <h2>Kusama</h2>
     <p class="day-sub">Lunedì 7 dicembre · il giorno di ferie</p>
   </div>
-  <p class="day-intro">Il perno del viaggio. Lunedì mattina presto è il momento meno affollato che riuscirai a ottenere in un ponte di dicembre: il weekend è passato, gli italiani non sono ancora arrivati in massa e la mostra apre alle dieci.</p>
+  <p class="day-intro">Il motivo del viaggio, e l'unico giorno in cui l'hotel paga davvero: dallo Stedelijk ti separano quattrocento metri. Lo slot è alle 11, ma puoi entrare in museo molto prima. La sera si è semplificata: cena alle 19:00 e imbarco alle 21:15, con il ristorante a tre minuti dal pontile.</p>
+
+  <div class="anchor-bar">
+    <span class="k">Il trucco</span>
+    <span class="v">Il biglietto dello Stedelijk vale <em>tutta la giornata</em>: lo slot regola solo l'ingresso alla mostra. Entra alle 10, fatti la collezione permanente con calma, e alle 11 scivoli dentro Kusama. Un'ora guadagnata gratis.</span>
+  </div>
 
   <div class="stop">
     <div class="stop-time">10:00</div>
     <div class="stop-body">
-      <h3>Yayoi Kusama · Stedelijk Museum</h3>
-      <p>Tappa finale della retrospettiva europea, oltre trecento opere, settant'anni di carriera, una Infinity Mirror Room nuova creata per l'occasione. Calcola tre ore, non una. Il biglietto vale tutta la giornata: lo slot indica solo quando puoi entrare nella mostra, poi resti quanto vuoi e puoi tornare nel resto del museo.</p>
-      <div class="meta"><span class="chip hours">Tutti i giorni 10:00–18:00, 365 giorni l'anno · ultimo ingresso 17:45</span><span class="chip book">32,50 € mostra · 22,50 € solo collezione</span><span class="chip warn">Biglietti solo online, non esiste biglietteria fisica</span><span class="chip transit">Tram 2 / 5 / 12 · Museumplein</span></div>
+      <h3>Stedelijk · collezione permanente</h3>
+      <p>Mondrian, Malevich, i mobili di Rietveld, il design olandese del Novecento. Cinque minuti a piedi dall'hotel, quindi niente trasferimenti da calcolare.</p>
+      <div class="meta"><span class="chip book">Slot Kusama prenotato · 11:00</span><span class="chip hours">Tutti i giorni 10:00–18:00, 365 giorni l'anno</span><span class="chip warn">Il biglietto vale tutto il giorno: entra alle 10</span></div>
     </div>
   </div>
 
   <div class="stop">
-    <div class="stop-time">13:15</div>
+    <div class="stop-time">11:00</div>
+    <div class="stop-body">
+      <h3>Yayoi Kusama · lo slot</h3>
+      <p>Tappa finale della retrospettiva europea: oltre trecento opere, settant'anni di carriera, lavori storici mai esposti in Europa e una Infinity Mirror Room creata per l'occasione. Una volta dentro resti quanto vuoi. Calcola tre ore, non una.</p>
+      <div class="meta"><span class="chip book">Slot confermato · 11:00</span><span class="chip warn">Le mirror room hanno code interne: vacci subito o verso la fine</span></div>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="stop-time">14:30</div>
     <div class="stop-body">
       <h3>Pranzo · Toko Bersama</h3>
-      <p>Venti minuti a piedi verso ovest, o tram 1 lungo l'Overtoom. Indonesiano a vassoio: indichi col dito, riso più otto contorni, prezzi da mensa e coda di quartiere. A cinque minuti dalla Foodhallen, che salti.</p>
+      <p>Venti minuti a piedi verso nord-ovest o tram 1 lungo l'Overtoom. Indonesiano a vassoio: indichi col dito, riso più otto contorni, dieci-venti euro. A cinque minuti dalla Foodhallen, che salti: è una food court diventata attrazione. Sì, è indonesiano come la cena — ma a pranzo è una mensa e la sera è una rijsttafel, non è lo stesso pasto.</p>
       <div class="meta"><span class="chip hours">tutti i giorni 12:00–21:30</span><span class="chip transit">Bilderdijkstraat 116</span></div>
     </div>
   </div>
 
   <div class="stop">
-    <div class="stop-time">15:00</div>
+    <div class="stop-time">16:00</div>
     <div class="stop-body">
       <h3>Huis Marseille</h3>
-      <p>Fotografia dentro due case sul canale del 1665, con giardino interno e una biblioteca con vetrate. Più curato e molto più vuoto di Foam. Se dopo Kusama hai gli occhi pieni, fai solo questo e salta il resto.</p>
-      <div class="meta"><span class="chip hours">tutti i giorni 10:00–18:00</span><span class="chip transit">Keizersgracht 401 · metro 52 Vijzelgracht</span></div>
+      <p>Fotografia dentro due case sul canale del 1665, con giardino interno e una biblioteca con vetrate. Più curato e molto più vuoto di Foam.</p>
+      <div class="meta"><span class="chip hours">tutti i giorni 10:00–18:00</span><span class="chip transit">Keizersgracht 401</span></div>
+      <div class="alt"><b>Scelta da fare qui</b> — Foam (Keizersgracht 609) chiude alle 18 e il mercato dei fiori alle 17:30. Non ci stanno tutti e tre: scegline due. Se vuoi il mercato, Foam salta.</div>
     </div>
   </div>
 
   <div class="stop">
-    <div class="stop-time dark-hour">16:30</div>
+    <div class="stop-time">17:00</div>
     <div class="stop-body">
-      <h3>Foam</h3>
-      <p>Dieci minuti a piedi lungo lo stesso canale. Tre o quattro mostre in parallelo, dal vintage alla moda contemporanea, e la libreria fotografica migliore della città.</p>
-      <div class="meta"><span class="chip hours">tutti i giorni 10:00–18:00 · gio e ven fino alle 21:00</span><span class="chip transit">Keizersgracht 609</span></div>
+      <h3>Bloemenmarkt, di passaggio</h3>
+      <p>Dieci minuti a piedi lungo il Singel da Huis Marseille, a Muntplein. Una premessa onesta: non è più un mercato dei fiori. Sono chioschi di bulbi confezionati, tulipani di legno, magneti e zoccoli — più souvenir che floricoltura, e tutte le recensioni recenti dicono la stessa cosa. Guardalo camminando, non programmarci un'ora.</p>
+      <div class="meta"><span class="chip hours">lun–sab 09:00–17:30 · dom dalle 11:00</span><span class="chip transit">Singel 630 · Muntplein</span><span class="chip warn">Bulbi: controlla che siano certificati per l'import, molti non lo sono</span></div>
+      <div class="alt"><b>Se cerchi fiori veri</b> — i chioschi dei fiorai lungo l'Albert Cuyp del sabato, o quelli sui canali fuori dal centro, vendono mazzi veri a prezzi da olandesi.</div>
     </div>
   </div>
 
   <div class="stop">
-    <div class="stop-time dark-hour">18:45</div>
+    <div class="stop-time dark-hour">19:00</div>
     <div class="stop-body">
-      <h3>Cena · Kartika</h3>
-      <p>Rijsttafel serio su Overtoom. Dieci piattini, sala piccola, servizio all'antica. È il pasto più "occasione" del viaggio.</p>
-      <div class="meta"><span class="chip hours">lun 17:00–21:30 · chiuso domenica</span><span class="chip warn">Pare accettino solo contanti — chiedi quando prenoti</span><span class="chip book">Prenota con settimane di anticipo</span><span class="chip transit">Overtoom 68H · tram 1</span></div>
+      <h3>Cena · Aneka Rasa</h3>
+      <p>Rijsttafel in una saletta a gestione familiare su Warmoesstraat, la strada più antica della città. Dieci portate, servizio diretto dei proprietari, prezzi medi. Il motivo per cui è qui: dal tavolo al pontile sono <strong>tre minuti a piedi</strong>, quindi la serata non ha più nessun incastro da rispettare.</p>
+      <div class="meta"><span class="chip hours">lun 17:00–22:00</span><span class="chip transit">Warmoesstraat 27 · 3 min dal pontile 4</span><span class="chip book">Da prenotare — niente numero su Google, cerca il contatto diretto</span></div>
+      <div class="alt"><b>Nota onesta</b> — Kartika è valutata meglio (4,6 contro 4,2) e la rijsttafel lì è superiore. Qui guadagni venti minuti in più a tavola e zero stress di trasferimento serale: è uno scambio di qualità contro tranquillità.</div>
     </div>
   </div>
 
-  <div class="note alarm">
-    <strong>Se lo slot Kusama del mattino è esaurito</strong> — prendi il primo pomeriggio dello stesso lunedì e sposta la fotografia al martedì mattina: Huis Marseille e Foam sono aperti anche l'8. Non spostare Kusama al weekend.
+  <div class="stop">
+    <div class="stop-time dark-hour">21:30</div>
+    <div class="stop-body">
+      <h3>Light Festival · crociera Stromma</h3>
+      <p>Ultima partenza della giornata. Barca a tetto di vetro riscaldata, 75 minuti, audioguida in inglese che racconta ogni installazione, cioccolata calda inclusa. Copre il percorso intero dall'acqua, che è il punto di vista per cui le opere sono state pensate. Si chiude alle 22:45, con le luci ancora accese, e sei in hotel verso le 23:15.</p>
+      <div class="meta"><span class="chip book">Prenotato · Damrak, 21:30</span><span class="chip warn">Imbarco al pontile 4 entro le 21:15</span><span class="chip warn">Ultima corsa: se la perdi non ce n'è un'altra</span><span class="chip hours">Luci accese fino alle 23:00</span></div>
+      <div class="alt"><b>Controlla il pontile sul biglietto</b> — Stromma a Damrak usa il pontile 4, a cinque minuti dalla Centraal verso il Dam, ma ha anche un molo in Prins Hendrikkade a dieci minuti di distanza. Guarda cosa c'è scritto sulla conferma prima di lunedì, non alle 21:10 sotto la pioggia.</div>
+      <div class="alt"><b>Niente passeggiata</b> — il percorso a piedi e quello in barca sono quasi gli stessi 4,5 km: fatta la crociera, la camminata non aggiunge niente. Se vuoi comunque vedere qualche opera da terra, ti basta il tratto fra Foam e il mercato dei fiori nel pomeriggio.</div>
+    </div>
   </div>
 </section>
 
-<!-- ============ MARTEDI ============ -->
+<!-- ===================== MARTEDI ===================== -->
 <section class="panel" id="d4" role="tabpanel" aria-labelledby="t4">
   <div class="day-head">
-    <h2>Est sull'acqua, poi Schiphol</h2>
+    <h2>Mezza mattina e via</h2>
     <p class="day-sub">Martedì 8 dicembre · Immacolata</p>
   </div>
-  <p class="day-intro">L'8 dicembre in Olanda è un martedì qualunque: tutto aperto, nessuna folla aggiuntiva. La mattina la spendi in una parte di città che quasi nessun visitatore attraversa, poi aeroporto.</p>
+  <p class="day-intro">L'8 dicembre in Olanda è un martedì qualunque, tutto aperto. Ma il volo delle 14:40 non lascia spazio: contando due ore di anticipo a Schiphol più il treno da Amsterdam Zuid, esci dall'hotel alle 11:45. Con Moco prenotato alle 9:30 la mattina è piena e tutta entro trecento metri dalla camera — ma non c'è margine per un secondo caffè.</p>
+
+  <div class="anchor-bar">
+    <span class="k">Cosa salta</span>
+    <span class="v">Due ore e un quarto fra la colazione e la partenza, con Moco prenotato alle 9:30 dentro. Java-eiland e l'Oostelijk Havengebied erano già tagliati; Het Schip e la Manege aprono alle 11 e Brouwerij 't IJ alle 14, quindi fuori anche quelli. Tutto quello che resta sta a piedi dall'hotel.</span>
+  </div>
+
+  <div class="stop">
+    <div class="stop-time">08:30</div>
+    <div class="stop-body">
+      <h3>Colazione, check-out, bagagli</h3>
+      <p>Tutto fatto entro le 9:20, perché il biglietto Moco è a fascia oraria e alle 9:30 devi essere alla porta. Valigie in deposito: le riprendi verso le 11:40 passando a prendere il tram.</p>
+    </div>
+  </div>
 
   <div class="stop">
     <div class="stop-time">09:30</div>
     <div class="stop-body">
-      <h3>Java-eiland e Oostelijk Havengebied</h3>
-      <p>Ex banchine portuali riconvertite negli anni Novanta in quartieri residenziali sull'acqua: ponti pedonali, canali stretti, architettura contemporanea olandese di ottimo livello e zero turisti. Si fa tutto a piedi, un paio d'ore.</p>
-      <div class="meta"><span class="chip transit">Tram 26 · la linea corre sul molo, vista migliore della città</span></div>
+      <h3>Moco Museum</h3>
+      <p>Attraversi il Museumplein e ci sei: trecento metri dall'hotel. Si gira in un'ora — tre piani, Banksy, street art e installazioni immersive. È il posto più dichiaratamente turistico di tutto il programma e questo è l'unico buco in cui non ruba niente a nient'altro.</p>
+      <div class="meta"><span class="chip book">Prenotato · martedì 9:30</span><span class="chip hours">mar 09:00–19:00</span><span class="chip transit">Honthorststraat 20 · 300 m dall'hotel</span></div>
+      <div class="alt"><b>Un'ora, non di più</b> — con la partenza alle 11:45 e il Plan Zuid dopo, il tempo è contato: se a Moco vi fermate un'ora e mezza, salta la passeggiata. Non è un dramma, ma decidetelo entrando, non uscendo.</div>
     </div>
   </div>
 
   <div class="stop">
-    <div class="stop-time">11:30</div>
+    <div class="stop-time">10:40</div>
     <div class="stop-body">
-      <h3>Riserva: Het Schip</h3>
-      <p>Aperto anche il martedì, 11:00–17:00. Se domenica è saltato per qualsiasi motivo, recuperi qui — ma il tour in inglese resta quello delle 15:00, quindi funziona solo con un volo serale.</p>
-      <div class="meta"><span class="chip hours">mar–dom 11:00–17:00</span><span class="chip warn">De Dageraad invece è chiuso il martedì</span></div>
+      <h3>Plan Zuid a piedi</h3>
+      <p>L'hotel è dentro il piano urbanistico di Berlage. Harmoniehof, Smaragdplein, le strade curve dell'Amsterdamse School senza biglietti né orari né code. Un'ora di cammino lento in un quartiere residenziale dove non c'è un turista.</p>
+      <div class="meta"><span class="chip hours">Nessun orario: è strada</span><span class="chip warn">Un'ora esatta, poi devi rientrare: niente deviazioni</span></div>
+      <div class="alt"><b>Alternative</b> — il Vondelpark parte dalla porta dell'hotel, grigio e spoglio e bellissimo a dicembre. L'Hollandsche Manege (Vondelstraat 140, maneggio ottocentesco con bar affacciato sulla cavallerizza) apre alle 11 ed è ormai fuori tempo massimo con Moco in programma: tienila per la prossima volta.</div>
     </div>
   </div>
 
   <div class="stop">
-    <div class="stop-time">14:00</div>
+    <div class="stop-time">11:45</div>
     <div class="stop-body">
-      <h3>Riserva: Brouwerij 't IJ</h3>
-      <p>Sotto il mulino De Gooyer, a est. Apre alle 14 nei giorni feriali, quindi va bene solo se hai tempo da perdere prima del volo. Assaggio di cinque birre e bitterballen.</p>
-      <div class="meta"><span class="chip hours">lun–ven 14:00–22:00</span><span class="chip transit">Tram 14 · Funenkade 7</span></div>
-    </div>
-  </div>
-
-  <div class="stop">
-    <div class="stop-time">—</div>
-    <div class="stop-body">
-      <h3>Centraal → Schiphol</h3>
-      <p>Stesso treno dell'andata, 17 minuti, contactless. Conta due ore prima del decollo e non fidarti dei controlli di Schiphol nei periodi di ponte.</p>
-      <div class="meta"><span class="chip transit">Treno NS · 17 min</span></div>
+      <h3>Partenza per Schiphol</h3>
+      <p>Tram o passeggiata fino ad Amsterdam Zuid, treno, terminal. Due ore di margine non sono esagerate: Schiphol nei ponti è imprevedibile e i controlli possono essere lunghissimi.</p>
+      <div class="meta"><span class="chip transit">Zuid → Schiphol · 6–8 min</span><span class="chip warn">Volo 14:40 · in aeroporto entro le 12:40</span></div>
     </div>
   </div>
 </section>
 
-<!-- ============ PRATICA ============ -->
-<section class="panel" id="dp" role="tabpanel" aria-labelledby="tp">
-  <div class="day-head"><h2>Pratica</h2><p class="day-sub">Prenotazioni, trasporti, alloggio</p></div>
+<!-- ===================== TO-DO ===================== -->
+<section class="panel" id="dt" role="tabpanel" aria-labelledby="tt">
+  <div class="day-head"><h2>To-do</h2><p class="day-sub">Prima di partire e durante</p></div>
 
-  <h3 class="sect">Da prenotare, in ordine di urgenza</h3>
+  <h4 class="sub">Già prenotato</h4>
+  <div class="ver">
+    <div class="ver-row"><div class="ver-tag y">✓ fatto</div><div class="ver-txt"><b>Kusama allo Stedelijk</b> — lunedì 7, slot 11:00. Entra comunque alle 10 per la collezione permanente.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ fatto</div><div class="ver-txt"><b>Het Schip, tour in inglese</b> — domenica 6, 15:00.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ fatto</div><div class="ver-txt"><b>V12</b> — domenica 6, 20:30.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ fatto</div><div class="ver-txt"><b>Crociera Light Festival</b> — lunedì 7, Damrak, 21:30.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ fatto</div><div class="ver-txt"><b>Moco Museum</b> — martedì 8, 9:30.</div></div>
+  </div>
+
+  <div class="note">
+    <strong>Restano solo due cene</strong> — Spang Makandra sabato e Aneka Rasa lunedì, entrambe senza prenotazione. Sono i due posti meno critici del viaggio: sale informali, nessun menu fisso, e se trovi pieno c'è dell'altro nel raggio di cinque minuti. Ma lunedì la cena è legata alla barca, quindi quella proverei a bloccarla.
+  </div>
+
+  <h4 class="sub">Da fare adesso</h4>
   <div id="checklist">
-    <label class="check"><input type="checkbox"><span class="check-txt"><b>Slot Kusama, lunedì 7 ore 10:00</b><span>Solo su stedelijk.nl. È l'unica cosa davvero critica del viaggio.</span></span></label>
-    <label class="check"><input type="checkbox"><span class="check-txt"><b>Voli KLM Bologna–Schiphol</b><span>Unico diretto sulla tratta. Ponte dell'Immacolata: prima prenoti, meno paghi.</span></span></label>
-    <label class="check"><input type="checkbox"><span class="check-txt"><b>Hotel</b><span>Zone consigliate sotto. A dicembre si trova anche in ottobre, ma non aspettare novembre.</span></span></label>
-    <label class="check"><input type="checkbox"><span class="check-txt"><b>Tour inglese Het Schip, domenica 15:00</b><span>Posti limitati, 45 minuti, è il motivo per cui ci vai.</span></span></label>
-    <label class="check"><input type="checkbox"><span class="check-txt"><b>Kartika, lunedì sera</b><span>Al telefono. Chiedi se accettano carte.</span></span></label>
-    <label class="check"><input type="checkbox"><span class="check-txt"><b>V12, domenica sera</b><span>Unica sera possibile: chiuso lunedì e martedì.</span></span></label>
-    <label class="check"><input type="checkbox"><span class="check-txt"><b>Spang Makandra, sabato sera</b><span>Pakjesavond aiuta, ma non contarci.</span></span></label>
-    <label class="check"><input type="checkbox"><span class="check-txt"><b>Light Festival, se vuoi la crociera</b><span>Biglietti in vendita dal 1° ottobre 2026.</span></span></label>
+    <label class="check hot"><input type="checkbox"><span class="check-txt"><b>Aneka Rasa, lunedì ore 19:00</b><span>Warmoesstraat 27, tre minuti dal pontile. Su Google non c'è il numero: cerca il contatto diretto o passa a prenotare domenica mattina, che da lì ci passi.</span></span></label>
+    <label class="check"><input type="checkbox"><span class="check-txt"><b>Spang Makandra, sabato sera</b><span>Pakjesavond aiuta, ma siete in due e il sabato è sabato.</span></span></label>
+    <label class="check"><input type="checkbox"><span class="check-txt"><b>Scaricare l'app del Light Festival</b><span>È uscita a metà novembre. Serve per la mappa del percorso a piedi.</span></span></label>
+    <label class="check"><input type="checkbox"><span class="check-txt"><b>Controllare il cartellone di EYE per domenica</b><span>Se c'è una proiezione in pellicola che ti interessa, cambia quanto tempo dedicare a Noord.</span></span></label>
+    <label class="check"><input type="checkbox"><span class="check-txt"><b>Contanti per la cena di lunedì</b><span>Molti indonesiani ad Amsterdam preferiscono o accettano solo contanti. Chiedilo quando prenoti e porta 80–100 € in due per sicurezza.</span></span></label>
+    <label class="check"><input type="checkbox"><span class="check-txt"><b>Verificare che la carta contactless funzioni sui tornelli NS</b><span>Alcune carte prepagate italiane vengono rifiutate. Se hai dubbi, portane due diverse.</span></span></label>
+    <label class="check"><input type="checkbox"><span class="check-txt"><b>Giacca impermeabile, non ombrello</b><span>Il tour di Het Schip è in parte all'aperto e lì tira vento. L'ombrello si rivolta.</span></span></label>
+    <label class="check"><input type="checkbox"><span class="check-txt"><b>Orari dei traghetti per Noord, la domenica sera</b><span>Cena alle 20:30 a Noord vuol dire rientro verso le 23. Guardalo la mattina, non all'uscita dal ristorante.</span></span></label>
   </div>
   <button class="reset" id="resetBtn" type="button">Azzera elenco</button>
+
+  <h4 class="sub">Durante il viaggio</h4>
+  <ul class="plain">
+    <li><b>Sabato mattina</b> — bagagli al Trianon prima di muoverti, e conferma che il deposito sia davvero disponibile prima delle 14.</li>
+    <li><b>Sabato</b> — l'Albert Cuyp chiude alle 17 ed è l'unica occasione: non farlo slittare.</li>
+    <li><b>Domenica</b> — orari dei traghetti controllati la mattina: la cena finisce verso le 22:30 e sei a Noord.</li>
+    <li><b>Domenica</b> — parti per il bus 22 con margine: il tour delle 15 non si recupera.</li>
+    <li><b>Lunedì</b> — entra allo Stedelijk alle 10, non alle 11.</li>
+    <li><b>Lunedì</b> — decidi fra Foam e il mercato dei fiori: non ci stanno entrambi.</li>
+    <li><b>Lunedì</b> — contanti in tasca prima di sederti a cena.</li>
+    <li><b>Lunedì</b> — dal tavolo al pontile sono tre minuti, ma l'imbarco chiude alle 21:15 e quella è l'ultima barca: esci alle 21:05, non alle 21:12.</li>
+    <li><b>Martedì</b> — check-out e bagagli in deposito <em>prima</em> di Moco: alle 9:30 devi già essere libero.</li>
+    <li><b>Sempre</b> — niente fumo all'aperto a Wallen, Dam, Damrak e Nieuwmarkt: cento euro contestati sul posto.</li>
+  </ul>
+</section>
+
+<!-- ===================== PRATICA ===================== -->
+<section class="panel" id="dp" role="tabpanel" aria-labelledby="tp">
+  <div class="day-head"><h2>Pratica</h2><p class="day-sub">Base, trasporti, regole</p></div>
+
+  <h3 class="sect">La base</h3>
+  <div class="card">
+    <h4>Budget Hotel Trianon</h4>
+    <p>J.W. Brouwersstraat 3, Oud-Zuid. Dietro il Concertgebouw, quattrocento metri dall'ingresso dello Stedelijk e a un isolato dal Vondelpark. Posizione ottima per il lunedì, buona per il sabato, un po' decentrata per Noord e per le Wallen: domenica metti in conto venti minuti di tram per andare e altrettanti per tornare.</p>
+    <div class="meta"><span class="chip hours">Check-in 14:00 · deposito bagagli prima</span><span class="chip transit">Tram 2, 3, 5, 12 · Museumplein e Concertgebouw</span></div>
+  </div>
 
   <h3 class="sect">Muoversi senza bici</h3>
   <div class="card">
     <h4>Pagamento</h4>
-    <p>Tram, bus, metro e treno si pagano appoggiando la carta contactless in entrata e in uscita. Non servono pass turistici, non serve la OV-chipkaart. I traghetti per Noord sono gratuiti e non hanno tornelli.</p>
+    <p>Tram, bus, metro e treno si pagano appoggiando la carta contactless in entrata <em>e</em> in uscita. Niente pass turistici, niente OV-chipkaart. I traghetti per Noord sono gratuiti e senza tornelli.</p>
   </div>
   <div class="card">
-    <h4>Linee che ti servono</h4>
-    <p>Metro 52 per l'asse nord–sud (De Pijp, Vijzelgracht). Tram 2, 5 e 12 per il Museumplein. Tram 1 lungo l'Overtoom. Bus 22 per Het Schip. Tram 26 per Java-eiland. Tram 14 per Brouwerij 't IJ.</p>
-    <div class="meta"><span class="chip warn">Verifica sempre sull'app GVB o 9292: a dicembre ci sono deviazioni per lavori</span></div>
+    <h4>Le linee che ti servono</h4>
+    <p>Treno NS fra Schiphol e Amsterdam Zuid. Tram 2, 3, 5 e 12 attorno all'hotel. Tram 12 per De Pijp. Tram 1 lungo l'Overtoom per Toko Bersama e Kartika. Bus 22 per Het Schip. Traghetti gratuiti dalla Centraal per Noord.</p>
+    <div class="meta"><span class="chip warn">A dicembre ci sono sempre lavori: verifica sull'app GVB o 9292</span></div>
   </div>
   <div class="card">
-    <h4>Cosa perdi rinunciando alla bici</h4>
-    <p>Il percorso del Light Festival, circa sei chilometri e mezzo lungo i canali, che nessun tram segue. Restano tre opzioni: farne un tratto a piedi, prendere la crociera, o rinunciare.</p>
+    <h4>Light Festival</h4>
+    <p>Edizione 15, luci accese dalle 16:30 alle 23:00 tutti i giorni. Il percorso è 4,5 km, non 6,5 come l'anno scorso, quindi a piedi è un'ora e un quarto e gratis. Tu hai scelto la barca: Stromma, partenze ogni 15–30 minuti dalle 16:30 alle 21:30 da Damrak 22 pontile 4, a cinque minuti dalla Centraal. Le due opzioni coprono lo stesso giro, quindi è una o l'altra.</p>
   </div>
 
-  <h3 class="sect">Dove dormire</h3>
+  <h3 class="sect">Mangiare</h3>
   <ul class="plain">
-    <li><b>Oud-West / Kinkerbuurt</b> — la scelta migliore per questo itinerario: dieci minuti a piedi dallo Stedelijk, e sia Toko Bersama che Kartika sono nel quartiere.</li>
-    <li><b>De Pijp</b> — lo conosci e ti è piaciuto. Mercato sotto casa, metro 52, ristoranti veri. Prezzi medi.</li>
-    <li><b>Oost, Dapperbuurt e Javastraat</b> — il meno turistico e il più economico dei tre, vicino a Brouwerij 't IJ.</li>
-    <li><b>Noord, fermata Buiksloterweg</b> — prezzi bassi, traghetto di quattro minuti, vista sulla città dall'altra riva. Solo se non ti pesa attraversare l'acqua ogni volta.</li>
-    <li><b>Da evitare</b> — tutto quello che sta fra la Centraal e Rembrandtplein.</li>
+    <li><b>La regola</b> — il cibo ad Amsterdam non è un punto dolente, la cucina olandese sì. La forza della città è coloniale: indonesiano e surinamese, livello alto e prezzi bassi.</li>
+    <li><b>Spang Makandra</b> — surinamese, De Pijp, ~25 € a testa. Sabato.</li>
+    <li><b>V12</b> — menu fisso e vini naturali a Noord, fascia alta. Domenica, unica sera possibile.</li>
+    <li><b>Toko Bersama</b> — indonesiano a vassoio, 10–20 €. Lunedì a pranzo.</li>
+    <li><b>Aneka Rasa</b> — rijsttafel familiare su Warmoesstraat, tre minuti dal pontile del Light Festival. Lunedì sera.</li>
+    <li><b>Foodhallen</b> — no. Food court diventata attrazione, prezzi da ristorante per roba da banchetto.</li>
   </ul>
 
   <h3 class="sect">Coffeeshop</h3>
   <div class="card">
     <h4>Regole 2026</h4>
-    <p>Acquisto fino a 5 grammi con documento. Fumare all'aperto è vietato a De Wallen, Dam, Damrak e Nieuwmarkt: multa di 100 € contestata sul posto, vale anche per i residenti. Si consuma dentro il locale o in alloggio, se l'hotel lo permette. Evita i coffeeshop sul Damrak.</p>
+    <p>Acquisto fino a 5 grammi con documento. Fumare all'aperto è vietato a De Wallen, Dam, Damrak e Nieuwmarkt, con multa di 100 € contestata sul posto, residenti compresi. Si consuma dentro il locale o in alloggio se l'hotel lo permette — in un budget hotel, chiedi prima. Evita i coffeeshop sul Damrak.</p>
+  </div>
+  <div class="card">
+    <h4>Quando sì e quando no</h4>
+    <p>Finestre buone: sabato pomeriggio a De Pijp dopo De Dageraad, domenica tardo pomeriggio, lunedì dopo Huis Marseille. Finestre pessime: domenica mattina alle Wallen, il tour delle 15 a Het Schip e lo slot Kusama del lunedì, che vuoi lucido.</p>
   </div>
 </section>
 
-<!-- ============ VERIFICHE ============ -->
+<!-- ===================== VERIFICHE ===================== -->
 <section class="panel" id="dv" role="tabpanel" aria-labelledby="tv">
-  <div class="day-head"><h2>Affidabilità dei dati</h2><p class="day-sub">Cosa ho confermato e cosa no</p></div>
-  <p class="day-intro">Durante il ricontrollo sono saltati fuori due errori nelle informazioni che ti avevo dato prima. Entrambi venivano da schede Google sbagliate, entrambi corretti qui sotto.</p>
+  <div class="day-head"><h2>Affidabilità dei dati</h2><p class="day-sub">Riverificato il 20 novembre 2026</p></div>
+  <p class="day-intro">Secondo giro di controlli, a due settimane dalla partenza. Rispetto alla versione di agosto è cambiata una cosa sostanziale e due errori erano già stati corretti allora.</p>
 
-  <div class="note alarm">
-    <strong>Correzione 1</strong> — Ti avevo detto che Foam è chiuso giovedì e venerdì. Falso: è aperto tutti i giorni 10–18, giovedì e venerdì fino alle 21.
-  </div>
-  <div class="note alarm">
-    <strong>Correzione 2</strong> — Ti avevo detto che Het Schip è chiuso lunedì <em>e martedì</em>. Falso: è chiuso solo il lunedì. Martedì 8 è aperto, e questo ti restituisce una riserva per l'ultimo giorno.
+  <div class="note">
+    <strong>Novità</strong> — il Light Festival ha finalmente pubblicato l'edizione 15: percorso a piedi di 4,5 km invece dei 6,5 dell'anno scorso, luci dalle 16:30 alle 23:00 tutti i giorni. Quello che ti avevo detto ad agosto — che senza bici il festival era perso — non vale più.
   </div>
 
   <h3 class="sect">Verificato su fonte ufficiale</h3>
   <div class="ver">
-    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Stedelijk</b> — aperto tutti i giorni 10–18, 365 giorni l'anno. Biglietti solo online. Kusama fino al 17 gennaio 2027, ingresso a slot, 32,50 €.</div></div>
-    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Het Schip</b> — martedì–domenica 11–17. Tour alle 12, 13, 14, 15 e 16; il 15:00 in inglese.</div></div>
-    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>De Dageraad</b> — giovedì–domenica 13–17. Tour alle 13:30, 14:30 e 15:30; il 15:30 in inglese.</div></div>
-    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Foam</b> — tutti i giorni 10–18, giovedì e venerdì fino alle 21.</div></div>
-    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Light Festival edizione 15</b> — dal 26 novembre 2026 al 17 gennaio 2027, percorso nuovo, opere visibili gratis. Biglietti crociere e passeggiate dal 1° ottobre 2026.</div></div>
-    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Divieto di fumo all'aperto</b> — De Wallen, Dam, Damrak, Nieuwmarkt. 100 € sul posto.</div></div>
-    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>8 dicembre 2026 cade di martedì</b> — il ponte è sabato 5 – martedì 8, con un solo giorno di ferie, il lunedì 7.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Stedelijk</b> — tutti i giorni 10–18, 365 giorni l'anno. Biglietti solo online. Kusama fino al 17 gennaio 2027, ingresso a slot, 32,50 €. Biglietto valido tutta la giornata.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Het Schip</b> — martedì–domenica 11–17, chiuso lunedì. Tour alle 12, 13, 14, 15 e 16; il 15:00 in inglese. 16,50 € con tour incluso.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>De Dageraad</b> — giovedì–domenica 13–17. Tour 13:30 / 14:30 / 15:30, il 15:30 in inglese. 7,50 €.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Light Festival ed. 15</b> — 26 novembre 2026 – 17 gennaio 2027. Luci 16:30–23:00 ogni giorno. Percorso a piedi 4,5 km, gratis. App da metà novembre.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Ristoranti</b> — Aneka Rasa lun 17:00–22:00. V12 chiuso lun e mar, domenica 18–23. Toko Bersama tutti i giorni 12–21:30. Spang Makandra sabato fino a mezzanotte.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Albert Cuypmarkt</b> — lun–sab 09:30–17:00, chiuso domenica.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Foam e Huis Marseille</b> — entrambi aperti tutti i giorni 10–18.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Moco Museum</b> — lun–gio e dom 09:00–19:00, ven e sab fino alle 20:00. Honthorststraat 20, sul Museumplein.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Bloemenmarkt</b> — lun–sab 09:00–17:30, domenica dalle 11:00. Singel 630.</div></div>
+    <div class="ver-row"><div class="ver-tag y">✓ conf</div><div class="ver-txt"><b>Crociera Stromma</b> — partenze dalle 16:30 alle 21:30 per tutta la durata del festival, 75 minuti, barca riscaldata con tetto di vetro, audioguida e cioccolata calda. 22,75 € o 26,75 € con drink e stroopwafel. Imbarco Damrak 22 pontile 4, quindici minuti di anticipo richiesti.</div></div>
   </div>
 
-  <h3 class="sect">Da riverificare prima di prenotare</h3>
+  <h3 class="sect">Da riverificare tu</h3>
   <div class="ver">
-    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Orari voli KLM</b> — 06:00, 12:55 e 17:25 sono l'orario estivo 2026. L'operativo invernale può cambiare: controlla sul sito dell'aeroporto di Bologna.</div></div>
-    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Orari Light Festival</b> — la pagina ufficiale è ancora ferma all'edizione 14. L'anno scorso le luci si accendevano alle 16:30 e restavano fino alle 22 (dom–mar) o alle 23 (mer–sab). Presumibile ma non confermato per il 2026.</div></div>
-    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Kartika solo contanti</b> — viene da una recensione recente, non dal ristorante. Chiedilo al telefono.</div></div>
-    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Numeri delle linee GVB</b> — corretti oggi, ma i traghetti sono stati rinumerati di recente e a dicembre ci sono cantieri. Usa l'app.</div></div>
-    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Chiusure anticipate del 5 dicembre</b> — è consuetudine, non una regola scritta. Non contarci per lo shopping.</div></div>
-    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Data di apertura Kusama</b> — il sito dello Stedelijk indica sia l'11 sia il 12 settembre in punti diversi della stessa pagina. Irrilevante per dicembre.</div></div>
+    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Hollandsche Manege</b> — martedì 11–17 secondo museum.nl, ma nessuna fonte conferma l'orario del bar al primo piano, che è il motivo per cui ci andresti. Il dato più debole del programma.</div></div>
+    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Deposito bagagli al Trianon</b> — dato tuo, non verificato da me. Confermalo via mail prima di partire: tutto il sabato mattina ci si appoggia.</div></div>
+    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Ultimo traghetto NDSM</b> — le linee principali vanno tutta la notte, NDSM ha frequenze ridotte. Da controllare sul posto domenica.</div></div>
+    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Contatto di Aneka Rasa</b> — Google non riporta il numero di telefono e il locale non ha un sistema di prenotazione online evidente. Cerca il contatto diretto, o passa a prenotare di persona domenica mattina quando sei alle Wallen: Warmoesstraat è lì.</div></div>
+    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Pagamenti ad Aneka Rasa</b> — non verificato se accettino carte. Chiedilo quando prenoti.</div></div>
+    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Numeri delle linee GVB</b> — corretti oggi, ma a dicembre ci sono cantieri e deviazioni. Usa l'app.</div></div>
+    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Chiusure anticipate del 5 dicembre</b> — pakjesavond è consuetudine, non legge. Non contarci per lo shopping, e non dare per scontato che i ristoranti chiudano.</div></div>
+    <div class="ver-row"><div class="ver-tag n">⚠ aperto</div><div class="ver-txt"><b>Tempi di controllo a Schiphol</b> — variabilissimi nei ponti. Le due ore di margine del martedì sono un minimo, non un'abbondanza.</div></div>
   </div>
+
+  <h3 class="sect">Cosa è cambiato rispetto ad agosto</h3>
+  <ul class="plain">
+    <li><b>Le Wallen</b> sono passate da sabato a domenica mattina: l'atterraggio alle 8:40 arrivava troppo tardi per averle vuote.</li>
+    <li><b>Sabato</b> è diventato un blocco compatto a sud, perché l'hotel è a Oud-Zuid e il check-in è alle 14.</li>
+    <li><b>Kusama</b> è alle 11 e non alle 10, con l'ingresso anticipato alle 10 per la collezione permanente.</li>
+    <li><b>Java-eiland e Oostelijk Havengebied</b> sono tagliati: il volo delle 14:40 non li consente.</li>
+    <li><b>Il Light Festival</b> si fa in barca, lunedì alle 21:30 — l'ultima partenza — e non a piedi: la passeggiata è stata eliminata perché copre lo stesso percorso.</li>
+    <li><b>La cena di lunedì</b> è passata da Kartika ad Aneka Rasa, alle 19:00: tre minuti dal pontile invece di venti di tram, al prezzo di una rijsttafel un po' meno buona.</li>
+    <li><b>Moco</b> è stato aggiunto al martedì mattina, non al lunedì: è l'unico museo che apre alle 9 e l'unica tappa che non toglie tempo a nulla.</li>
+    <li><b>Il Bloemenmarkt</b> è entrato come passaggio di dieci minuti il lunedì, in concorrenza con Foam: entrambi chiudono fra 17:30 e 18.</li>
+  </ul>
 </section>
 
 </main>
 
 <footer class="wrap">
-  <p>File singolo, nessuna dipendenza oltre ai font. Le spunte dell'elenco vivono solo in memoria e si azzerano ricaricando la pagina: se lo metti online come quello del Giappone, si aggiunge il salvataggio persistente.</p>
-  <p><code>Ultima verifica orari: 22 agosto 2026</code></p>
+  <p>File singolo, nessuna dipendenza oltre ai font. Le spunte dell'elenco vivono solo in memoria e si azzerano ricaricando: se lo metti online come quello del Giappone, si aggiunge il salvataggio persistente.</p>
+  <p><code>Orari verificati: 20 novembre 2026</code></p>
 </footer>
 
 <script>
@@ -599,7 +645,7 @@ a{color:var(--canal)}
       t.setAttribute('aria-selected', j===i ? 'true' : 'false');
       panels[j].classList.toggle('is-on', j===i);
     });
-    window.scrollTo({top:0, behavior:'instant' in document.documentElement.style ? 'instant' : 'auto'});
+    window.scrollTo(0,0);
   }
 
   tabs.forEach(function(t,i){
@@ -612,7 +658,6 @@ a{color:var(--canal)}
     });
   });
 
-  // Checklist: stato solo in memoria, nessuna persistenza.
   var boxes = Array.prototype.slice.call(document.querySelectorAll('#checklist input'));
   boxes.forEach(function(b){
     b.addEventListener('change', function(){
